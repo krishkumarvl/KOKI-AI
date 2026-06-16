@@ -3,7 +3,16 @@
    #random isiliye use kra taki thoda robotic feel na aaye....
 from datetime import datetime
 import random
+import google.generativeai as genai
 MEMORY_FILE = "memory.txt"
+# Gemini Setup
+from dotenv import load_dotenv
+import os
+import google.generativeai as genai
+load_dotenv()
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
+model = genai.GenerativeModel("gemini-2.5-flash")
 
 responses = { #bahut se random responses daal diye ab ek word pr iske pass 3 alag alag response ho skte hai for exam hello type krne pr hi there bhi aa skta hai aur kya haal hai bhi...{aage dikkat nhi aani chahiye}
     "hello": ["Hey! Good to see you.", "Hello! Kya haal hai?", "Hi there!"],
@@ -71,6 +80,21 @@ def listen():
 def get_time():
     now = datetime.now()
     return now.strftime("%I:%M %p")
+#========= Gemini Function =========
+# agar dictionary ko answer nahi pata hoga
+# to KOKI Gemini se puchega
+
+def ask_gemini(question):
+
+    try:
+
+        response = model.generate_content(question)
+
+        return response.text
+
+    except Exception as e:
+
+        return "Sorry bhai, Gemini se connect nahi ho pa raha."
 
 def respond(msg, name):
     global conversation_count
@@ -131,7 +155,13 @@ def respond(msg, name):
             break
 
     if not matched:
-        print("KOKI: Still learning " + name + ". I don't know this yet.")
+          print("KOKI: Hmm... mujhe ye dictionary me nahi mila.")
+    print("KOKI: Gemini se puch raha hoon...")
+
+    gemini_reply = ask_gemini(msg)
+
+    print("KOKI:", gemini_reply)
+
 
     return True
 
