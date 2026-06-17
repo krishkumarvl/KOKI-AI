@@ -1,14 +1,15 @@
-# Project KOKI — Day 4
+# Project KOKI — Day 7
 # Dictionary brain + session memory + file memory
    #random isiliye use kra taki thoda robotic feel na aaye....
 from datetime import datetime
 import random
-import google.generativeai as genai
-MEMORY_FILE = "memory.txt"
-# Gemini Setup
-from dotenv import load_dotenv
+import json
 import os
 import google.generativeai as genai
+MEMORY_FILE = "memory.txt"
+JSON_MEMORY_FILE = "koki_memory.json"
+# Gemini Setup
+from dotenv import load_dotenv
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
@@ -61,6 +62,29 @@ def save_memory(text):
     with open(MEMORY_FILE, "w", encoding="utf-8") as file:
         file.write(text + "\n")
 
+        #========= JSON Memory =========
+# important user information yaha store hogi
+def load_json_memory():
+
+    try:
+
+        if os.path.exists(JSON_MEMORY_FILE):
+
+            with open(JSON_MEMORY_FILE, "r", encoding="utf-8") as file:
+                return json.load(file)
+
+    except:
+
+        return {}
+
+    return {}
+
+def save_json_memory(memory_data):
+    with open(JSON_MEMORY_FILE, "w", encoding="utf-8") as file:
+     json.dump(memory_data, file, indent=4)
+
+user_memory = load_json_memory()
+
         #=========main functions =========
 
 def greet():
@@ -68,10 +92,19 @@ def greet():
     print("   KOKI v1 - Your Personal AI")
     print("   Built by Krish Kumar")
     print("=" * 40)
-    name = input("KOKI: What's your name? ")
-    print("KOKI: Hello " + name + "! I am KOKI.")
-    print("KOKI: I understand " + str(len(responses)) + " topics right now.")
-    print("KOKI: And I'm learning more every day.")
+    # agar pehle se naam save hai
+    if "name" in user_memory:
+        name = user_memory["name"]
+        print(f"KOKI: Welcome back {name}!")
+    else:
+        name = input("KOKI: What's your name? ")
+        user_memory["name"] = name
+        save_json_memory(user_memory)
+        print("KOKI: Nice to meet you " + name + "!")
+        print("KOKI: Hello " + name + "! I am KOKI.")
+        print("KOKI: I understand " + str(len(responses)) + " topics right now.")
+        print("KOKI: And I'm learning more every day.")
+
     return name
 
 def listen():
@@ -101,6 +134,49 @@ def respond(msg, name):
     conversation_count += 1
     #matching ke liye use kra lower case ka taki Hello ya Fir hello same lage
     msg = msg.lower().strip()
+    if "chat_history" not in user_memory:
+        user_memory["chat_history"] = []
+
+    user_memory["chat_history"].append(msg)
+
+    user_memory["chat_history"] = user_memory["chat_history"][-20:]
+
+    save_json_memory(user_memory)
+    #========= Interest Memory =========
+# user ki pasand yaad rakho
+    if msg.startswith("i like"):
+
+        interest = msg.replace("i like", "").strip()
+
+        if "interests" not in user_memory:
+
+            user_memory["interests"] = []
+
+        if interest not in user_memory["interests"]:
+
+            user_memory["interests"].append(interest)
+
+            save_json_memory(user_memory)
+
+        print(f"KOKI: Noted! I know you like {interest} now.")
+
+        return True
+    
+    #========= User Profile =========
+
+    if msg == "what do you know about me":
+
+        print("KOKI: Here's what I know about you:")
+
+        if "name" in user_memory:
+
+            print("- Name:", user_memory["name"])
+
+        if "interests" in user_memory:
+
+            print("- Interests:", ", ".join(user_memory["interests"]))
+
+        return True
 
     #======remember commands========
     #agar user ne koi aisi baat kahi jo KOKI ko yaad rakhni chahiye, toh usko identify karke memory me save krna hoga
@@ -111,6 +187,12 @@ def respond(msg, name):
             file.write(memory + "\n")
 
         print("KOKI: I'll remember that.")
+        return True
+    
+    if msg == "show history":
+        print("KOKI: Recent conversations:")
+        for item in user_memory.get("chat_history", []):
+            print("-", item)
         return True
     
     #=========Recall Memory========
@@ -129,41 +211,45 @@ def respond(msg, name):
             print("KOKI: I don't remember anything yet.")
 
         return True
-    
+
+    #========= Dictionary Matching =========
+    # user ke message me keyword dhundho
+    # agar mil gaya to dictionary response do
     matched = False
 
-    # dictionary matching
-    # user ke message me keyword dhundho
-    # fir us keyword ka random response do
-
     for key in responses:
+
         if key in msg:
 
             reply = random.choice(responses[key])
 
-            # populate dynamic time if needed
+            # dynamic time replace karne ke liye
             if "{time}" in reply:
                 reply = reply.format(time=get_time())
 
             print("KOKI: " + reply)
 
-            matched = True
-
             if conversation_count == 5:
                 print("KOKI: 5 messages already " + name + ". I like talking to you.")
 
-            break
+            # dictionary response mil gaya
+            # Gemini ko call nahi karna
+            matched = True
+            return True
 
+    #========= Gemini Fallback =========
+    # agar dictionary me answer nahi mila
+    # to Gemini se pucho
     if not matched:
-          print("KOKI: Hmm... mujhe ye dictionary me nahi mila.")
-    print("KOKI: Gemini se puch raha hoon...")
 
-    gemini_reply = ask_gemini(msg)
+        print("KOKI: Hmm... mujhe ye dictionary me nahi mila.")
+        print("KOKI: Gemini se puch raha hoon...")
 
-    print("KOKI:", gemini_reply)
+        gemini_reply = ask_gemini(msg)
 
+        print("KOKI:", gemini_reply)
 
-    return True
+        return True
 
 # Start
 name = greet()
