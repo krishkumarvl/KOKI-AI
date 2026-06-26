@@ -405,11 +405,9 @@ def respond(msg, name):
 
         return True
 
-    #========= Gemini Fallback =========
+    #========= KOKI THINKING (AI BRAIN)=========
     # agar dictionary me answer nahi mila
-    # to Gemini se pucho
-    print("KOKI: Hmm... mujhe ye dictionary me nahi mila.")
-    print("KOKI: Gemini se puch raha hoon...")
+    # to KOKI apne brain me soch lega
 
     gemini_reply = ask_gemini(msg, name)
 
