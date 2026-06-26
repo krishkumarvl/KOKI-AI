@@ -111,8 +111,8 @@ PROJECT-KOKI/
 
 **Clone the repository**
 ```bash
-git clone https://github.com/krishkumarvl/PROJECT-KOKI.git
-cd PROJECT-KOKI
+git clone https://github.com/krishkumarvl/KOKI-AI.git
+cd KOKI-AI
 ```
 
 **Install dependencies**
