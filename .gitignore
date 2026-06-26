@@ -1,2 +1,13 @@
+# Environment variables
 .env
+
+# Python cache
 __pycache__/
+*.pyc
+
+# Local memory files
+koki_memory.json
+memory.txt
+
+# VS Code settings
+.vscode/

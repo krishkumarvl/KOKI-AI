@@ -139,6 +139,22 @@ def listen():
 def get_time():
     now = datetime.now()
     return now.strftime("%I:%M %p")
+#========= Context Loader =========
+# KOKI ke project ka complete context load karega
+
+def load_context():
+
+    try:
+
+        with open("koki_context.md", "r", encoding="utf-8") as file:
+
+            return file.read()
+
+    except FileNotFoundError:
+
+        return ""
+
+
 #========= Gemini Function =========
 # agar dictionary ko answer nahi pata hoga
 # to KOKI Gemini se puchega
@@ -146,19 +162,85 @@ def get_time():
 def ask_gemini(question, name=None):
 
     try:
-        context = f"The user's name is {name}. " if name else ""
-        prompt = f"{KOKI_PERSONA}\n{context}\nUser: {question}\nKOKI:"
+
+        # Project Context
+        project_context = load_context()
+
+        # User Memory (interests, name etc — history nahi, alag se neeche bhejenge)
+        memory_summary = {
+            "name": user_memory.get("name", ""),
+            "interests": user_memory.get("interests", [])
+        }
+        memory_context = json.dumps(memory_summary, indent=4, ensure_ascii=False)
+
+        # Fix 1 — last 5 conversation pairs prompt me daalenge
+        # taki Gemini samjhe ki abhi tak kya baat ho rahi thi
+        recent_history = user_memory.get("chat_history", [])[-6:-1]  # last 5, current nahi
+        conversation_window = ""
+        for turn in recent_history:
+            if isinstance(turn, dict):
+                conversation_window += f"User: {turn.get('user', '')}\n"
+                if turn.get("koki"):
+                    conversation_window += f"KOKI: {turn.get('koki', '')}\n"
+
+        # User Name
+        user_context = f"Current User Name: {name}" if name else ""
+
+        # Final Prompt
+        prompt = f"""
+{project_context}
+
+------------------------
+
+User Profile
+
+{memory_context}
+
+------------------------
+
+{user_context}
+
+------------------------
+
+Recent Conversation (last 5 turns):
+
+{conversation_window if conversation_window else "No previous conversation this session."}
+
+------------------------
+
+Current User Question:
+
+{question}
+
+------------------------
+
+Instructions:
+
+- You are KOKI.
+- Never say you are Gemini.
+- Never mention Google.
+- Never mention context files.
+- Don't introduce yourself unless asked.
+- Don't greet in every response.
+- Keep answers short unless the user asks for detail.
+- If you already know the user's name, don't repeat it unnecessarily.
+- Use the recent conversation above to understand follow-up questions.
+- Behave like a personal AI assistant.
+"""
 
         response = client.models.generate_content(
+
             model=GEMINI_MODEL,
+
             contents=prompt
+
         )
 
         return response.text.strip()
 
-    except Exception as e:
+    except Exception:
 
-        return "Sorry bhai, Gemini se connect nahi ho pa raha. Thodi der baad try karna."
+        return "Sorry bhai, Gemini se connect nahi ho pa raha."
 
 def respond(msg, name):
     global conversation_count
@@ -173,31 +255,39 @@ def respond(msg, name):
     if "chat_history" not in user_memory:
         user_memory["chat_history"] = []
 
-    user_memory["chat_history"].append(msg)
-
+    # Fix 1 — ab sirf user ka message nahi, pair store hoga {user, koki}
+    # taki Gemini ko actual conversation samajh aaye, ek taraf ki baat nahi
+    # reply baad me update hoga, pehle placeholder rakhte hain
+    current_turn = {"user": msg, "koki": ""}
+    user_memory["chat_history"].append(current_turn)
     user_memory["chat_history"] = user_memory["chat_history"][-20:]
-
-    save_json_memory(user_memory)
     #========= Interest Memory =========
 # user ki pasand yaad rakho
-    if msg.startswith("i like"):
+# "i like", "i love", "mujhe X pasand hai" — teenon catch honge ab
+    interest = None
 
-        interest = msg.replace("i like", "").strip()
+    if msg.startswith("i like "):
+        interest = msg.replace("i like ", "", 1).strip()
+    elif msg.startswith("i love "):
+        interest = msg.replace("i love ", "", 1).strip()
+    elif "pasand hai" in msg:
+        # "mujhe cricket pasand hai" → "cricket" nikalenge
+        interest = msg.replace("mujhe", "").replace("pasand hai", "").strip()
 
-        if interest:
+    if interest:
+        if "interests" not in user_memory:
+            user_memory["interests"] = []
+        if interest not in user_memory["interests"]:
+            user_memory["interests"].append(interest)
+        reply = f"Noted! I know you like {interest} now."
+        current_turn["koki"] = reply
+        save_json_memory(user_memory)
+        print(f"KOKI: {reply}")
+        return True
 
-            if "interests" not in user_memory:
-                user_memory["interests"] = []
-
-            if interest not in user_memory["interests"]:
-                user_memory["interests"].append(interest)
-                save_json_memory(user_memory)
-
-            print(f"KOKI: Noted! I know you like {interest} now.")
-
-        else:
-            print("KOKI: Like kya karta hai bata toh sahi bhai.")
-
+    # agar sirf "i like" type kiya bina kuch bataye
+    if msg.strip() in ["i like", "i love"]:
+        print("KOKI: Like kya karta hai bata toh sahi bhai.")
         return True
     
     #========= User Profile =========
@@ -207,13 +297,20 @@ def respond(msg, name):
         print("KOKI: Here's what I know about you:")
 
         if "name" in user_memory:
-
             print("- Name:", user_memory["name"])
 
-        if "interests" in user_memory:
-
+        if "interests" in user_memory and user_memory["interests"]:
             print("- Interests:", ", ".join(user_memory["interests"]))
 
+        # memory.txt ki notes bhi dikhao
+        notes = load_memory()
+        if notes:
+            print("- Notes:")
+            for note in notes:
+                print("  •", note.strip())
+
+        current_turn["koki"] = "Showed profile."
+        save_json_memory(user_memory)
         return True
 
     #======remember commands========
@@ -223,15 +320,51 @@ def respond(msg, name):
 
         if memory:
             save_memory(memory)
+            current_turn["koki"] = "I'll remember that."
+            save_json_memory(user_memory)
             print("KOKI: I'll remember that.")
         else:
             print("KOKI: Remember kya karu bhai, bata toh sahi.")
+        return True
+
+    #========= Fix 2 — Forget Command =========
+    # agar kuch galat save ho gaya toh delete kar sakte hain
+    # "forget mujhe cricket pasand hai" → woh line hata dega memory.txt se
+    if msg.startswith("forget "):
+        to_forget = msg.replace("forget ", "", 1).strip()
+        memories = load_memory()
+
+        # jo line match kare usse hata do, baaki rakho
+        updated = [m for m in memories if to_forget.lower() not in m.lower()]
+
+        if len(updated) < len(memories):
+            # updated list wapas file me likh do
+            try:
+                with open(MEMORY_FILE, "w", encoding="utf-8") as file:
+                    file.writelines(updated)
+                reply = f"Bhool gaya — '{to_forget}' memory se hata diya."
+            except OSError as e:
+                reply = f"Memory update nahi ho payi — {e}"
+        else:
+            reply = f"Yeh toh mujhe yaad hi nahi tha: '{to_forget}'"
+
+        current_turn["koki"] = reply
+        save_json_memory(user_memory)
+        print("KOKI:", reply)
         return True
     
     if msg == "show history":
         print("KOKI: Recent conversations:")
         for item in user_memory.get("chat_history", []):
-            print("-", item)
+            # naye pair format ko handle karo, purane string format ko bhi
+            if isinstance(item, dict):
+                print(f"  You: {item.get('user', '')}")
+                if item.get("koki"):
+                    print(f"  KOKI: {item.get('koki', '')}")
+            else:
+                print("-", item)
+        current_turn["koki"] = "Showed history."
+        save_json_memory(user_memory)
         return True
     
     #=========Recall Memory========
@@ -246,6 +379,8 @@ def respond(msg, name):
         else:
             print("KOKI: I don't remember anything yet.")
 
+        current_turn["koki"] = "Showed memories."
+        save_json_memory(user_memory)
         return True
 
     #========= Dictionary Matching =========
@@ -258,6 +393,10 @@ def respond(msg, name):
         # dynamic time replace karne ke liye
         if "{time}" in reply:
             reply = reply.format(time=get_time())
+
+        # Fix 1 — KOKI ka reply bhi pair me save karo
+        current_turn["koki"] = reply
+        save_json_memory(user_memory)
 
         print("KOKI: " + reply)
 
@@ -273,6 +412,10 @@ def respond(msg, name):
     print("KOKI: Gemini se puch raha hoon...")
 
     gemini_reply = ask_gemini(msg, name)
+
+    # Fix 1 — Gemini ka reply bhi pair me save karo
+    current_turn["koki"] = gemini_reply
+    save_json_memory(user_memory)
 
     print("KOKI:", gemini_reply)
 

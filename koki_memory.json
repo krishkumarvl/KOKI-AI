@@ -7,11 +7,6 @@
         "movies"
     ],
     "chat_history": [
-        "hi",
-        "hello",
-        "what do you remember about me",
-        "show history",
-        "what do you know about me",
         "hello",
         "hello",
         "ek joke suna",
@@ -26,6 +21,11 @@
         "remember mujhe cricket pasand hai",
         "what do you remember",
         "mujhe apna khudka ai bot banana hai kaise bnau",
-        "fir uske baad"
+        "fir uske baad",
+        "who built you",
+        "who built you?",
+        "what if kryphix?",
+        "what are your future goals",
+        "what do you know about me"
     ]
 }
