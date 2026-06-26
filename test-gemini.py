@@ -1,16 +1,15 @@
-import google.generativeai as genai
+from google import genai
 
 # apni API key yaha temporarily paste kr
 from dotenv import load_dotenv
 import os
-import google.generativeai as genai
 load_dotenv()
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-model = genai.GenerativeModel("gemini-2.5-flash")
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-response = model.generate_content(
-    "Introduce yourself as KOKI, an AI assistant."
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents="Introduce yourself as KOKI, an AI assistant."
 )
 
 print(response.text)

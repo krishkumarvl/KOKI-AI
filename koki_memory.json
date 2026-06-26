@@ -7,10 +7,6 @@
         "movies"
     ],
     "chat_history": [
-        "how are you buddy",
-        "show history",
-        "what do you know about me",
-        "hello",
         "hi",
         "hello",
         "what do you remember about me",
@@ -26,6 +22,10 @@
         "army",
         "what is quantum physics",
         "i like movies",
-        "what do you know about me"
+        "what do you know about me",
+        "remember mujhe cricket pasand hai",
+        "what do you remember",
+        "mujhe apna khudka ai bot banana hai kaise bnau",
+        "fir uske baad"
     ]
 }
