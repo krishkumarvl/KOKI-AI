@@ -2,6 +2,7 @@
 import re
 import random
 from datetime import datetime
+from brain.preprocess import normalize_message
 from brain.music import play_on_youtube_music
 
 from config import RESPONSES, EXIT_WORDS
@@ -24,9 +25,12 @@ def get_time():
     return datetime.now().strftime("%I:%M %p")
 
 def find_dictionary_match(msg):
-    for key in RESPONSES:
-        if re.search(r'\b' + re.escape(key) + r'\b', msg):
-            return key
+    msg = msg.strip().lower()
+
+    # Exact match only
+    if msg in RESPONSES:
+        return msg
+
     return None
 
 # ─── Greet ────────────────────────────────────────────────────────────────────
@@ -56,7 +60,7 @@ def greet():
 def respond(msg, name):
     global conversation_count
 
-    msg_lower = msg.lower().strip()
+    msg_lower = normalize_message(msg)
 
     if not msg_lower:
         print("KOKI: Kuch toh likh bhai, main padhu kya?")
