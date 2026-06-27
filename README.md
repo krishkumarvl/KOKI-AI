@@ -8,7 +8,7 @@
 ![Gemini](https://img.shields.io/badge/Gemini-2.5_Flash-orange?style=flat&logo=google&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=flat)
-![Week](https://img.shields.io/badge/Week_2-Complete-purple?style=flat)
+![Week](https://img.shields.io/badge/Week_3-Complete-purple?style=flat)
 ![Build](https://img.shields.io/badge/Build-In_Public-red?style=flat)
 
 *"I don't want to learn first and build later. I want to build while learning."*
@@ -32,15 +32,13 @@ Every feature is written by hand. Every bug is a lesson. Every week is a new cha
 ```
 You
  ↓
-KOKI  (koki.py)
+main.py  (CLI loop + command routing)
  ↓
-Memory Check  (koki_memory.json + memory.txt)
+memory/manager.py  (interest detection, history, remember/forget)
  ↓
-Dictionary Brain  (instant responses)
+config.py  (dictionary brain)
  ↓
-Context Builder  (koki_context.md)
- ↓
-Gemini 2.5 Flash  (fallback AI)
+brain/gemini.py  (Gemini 2.5 Flash fallback)
  ↓
 Response
 ```
@@ -62,6 +60,8 @@ Response
 | Remember Command | Save anything to memory | ✅ |
 | Forget Command | Delete wrong memories | ✅ |
 | Hinglish Detection | Understands "mujhe X pasand hai" | ✅ |
+| Modular Architecture | brain/, memory/, config.py split | ✅ |
+| YouTube Music | "play X" opens song in browser | ✅ |
 
 ---
 
@@ -71,8 +71,8 @@ Response
 |------|-------|--------|
 | Week 1 | Dictionary Brain + File Memory + Random Responses | ✅ Done |
 | Week 2 | Gemini + JSON Memory + Context Engineering | ✅ Done |
-| Week 3 | Modular Architecture + Cleaner Codebase | 🔜 Next |
-| Week 4 | Better Conversation Flow + Prompt Engineering | 📋 Planned |
+| Week 3 | Modular Architecture + YouTube Music Integration | ✅ Done |
+| Week 4 | YouTube Search + Git Integration | 🔜 Next |
 | Week 5+ | Voice + Web Search + File Understanding | 🔮 Future |
 
 ---
@@ -93,16 +93,26 @@ Response
 ## 📂 Project Structure
 
 ```
-PROJECT-KOKI/
-│
-├── koki.py              ← main assistant
-├── koki_context.md      ← KOKI's identity + project context
-├── koki_memory.json     ← persistent user memory
-├── memory.txt           ← remembered notes
-├── requirements.txt     ← dependencies
-├── .env                 ← API keys (not pushed)
-├── .gitignore
-└── README.md
+KOKI/
+├── main.py               ← CLI loop + command routing
+├── config.py             ← Constants, API keys, responses dict
+├── brain/
+│   ├── __init__.py
+│   └── gemini.py         ← Gemini client + prompt builder
+├── memory/
+│   ├── __init__.py
+│   └── manager.py        ← Memory load/save/forget + interest detection
+├── prompts/
+│   └── koki_prompt.md    ← KOKI system prompt
+├── data/
+│   ├── memory.txt        ← Plain-text notes
+│   └── koki_memory.json  ← Structured user data
+├── docs/
+│   ├── architecture.md
+│   └── roadmap.md
+├── requirements.txt
+├── .env                  ← API keys (not pushed)
+└── .gitignore
 ```
 
 ---
@@ -127,7 +137,7 @@ GEMINI_API_KEY=your_api_key_here
 
 **Run KOKI**
 ```bash
-python koki.py
+python main.py
 ```
 
 ---
@@ -135,12 +145,13 @@ python koki.py
 ## 🔮 Future Roadmap
 
 ```
-Phase 1 ✅  →  Memory + Gemini + User Profiles
-Phase 2 🔜  →  Modular Code + Better Prompts
-Phase 3 📋  →  Voice Assistant + Speech Recognition
-Phase 4 📋  →  Vision + PDF Reader + OCR
-Phase 5 📋  →  Web Search + Browser Automation
-Phase 6 🔮  →  KOKI v1.0 — Public Release
+Phase 1 ✅  →  Dictionary Brain + Memory
+Phase 2 ✅  →  Gemini + JSON Memory + Context Engineering
+Phase 3 ✅  →  Modular Architecture + First Integration
+Phase 4 🔜  →  YouTube Search + Git Integration
+Phase 5 📋  →  Voice Assistant (Sarvam STT)
+Phase 6 📋  →  Web Search + File Understanding
+Phase 7 🔮  →  KOKI v1.0 — Public Release
 ```
 
 ---
@@ -153,7 +164,6 @@ Every bug teaches something. Every feature raises new questions. Every improveme
 
 KOKI is my way of learning AI, Python, and software engineering in public — while actually shipping something real.
 
----
 ---
 
 ## 🤝 Contributing

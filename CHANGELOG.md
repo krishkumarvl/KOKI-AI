@@ -104,17 +104,49 @@ Finally, I introduced project context so KOKI understands its own identity inste
 
 ---
 
-#  Next Goal (Week 3)
+---
 
-The focus of the next week is **not adding flashy features**, but improving the internal architecture of KOKI.
+# Week 3 — From Script to Software
 
-Planned work includes:
+## Overview
 
-- Better code organization
-- Splitting large files into smaller modules
-- Cleaner memory system
-- Improving conversation flow
-- Better prompt management
-- More maintainable project structure
+Week 3 was not about adding flashy features.
+It was about making KOKI look and feel like a real software project.
 
-The goal is to build KOKI step by step while understanding every line of code instead of rushing towards advanced features.
+The entire codebase was refactored from a single `koki.py` file into a clean modular structure — without changing any existing behavior.
+
+## Refactor
+
+- Split `koki.py` into proper modules
+- `config.py` — all constants, API keys, persona, responses dict
+- `brain/gemini.py` — Gemini client, prompt builder, ask_gemini()
+- `memory/manager.py` — load/save/forget memory, interest detection, chat history
+- `main.py` — CLI loop and command routing only
+
+## New Folders
+
+- `brain/` — AI logic
+- `memory/` — memory management
+- `data/` — all data files (memory.txt, koki_memory.json)
+- `prompts/` — KOKI system prompt as a markdown file
+- `docs/` — architecture.md + roadmap.md
+
+## New Files
+
+- `prompts/koki_prompt.md` — KOKI personality and rules
+- `docs/architecture.md` — full project flow diagram
+- `docs/roadmap.md` — phase-by-phase build plan
+
+## Features Added
+
+- YouTube Music integration — "play X" opens song directly in browser (ongoing)
+- Zero new behavior changes — all Week 2 features work exactly the same
+
+## What I Learned
+
+- How to split a large Python file into modules
+- Why `__init__.py` exists and how imports work across folders
+- How folder structure makes a project maintainable
+- Why separating concerns (brain vs memory vs config) matters
+- How real open-source projects are organized 
+ (week 3 final updates will be shown on Friday...this is only day 13th progress)
