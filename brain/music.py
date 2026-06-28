@@ -1,14 +1,15 @@
 # brain/music.py — Project KOKI
-# "play X" sunke YouTube Music mein search karta hai
+# Week 3: Basic YouTube Music search (browser)
+# Week 4+: Direct play with yt-dlp
 
 import webbrowser
+import urllib.parse
 
 def play_on_youtube_music(query):
-    """
-    query ko YouTube Music search URL mein convert karta hai
-    aur browser mein kholta hai.
-    """
-    search_query = query.strip().replace(" ", "+")
-    url = f"https://music.youtube.com/search?q={search_query}"
-    webbrowser.open(url)
-    return f"Playing '{query}' on YouTube Music 🎵"
+    try:
+        encoded = urllib.parse.quote(query)
+        url = f"https://music.youtube.com/search?q={encoded}"
+        webbrowser.open(url)
+        return f"Searching '{query}' on YouTube Music 🎵"
+    except Exception as e:
+        return f"Music play nahi ho payi — {e}"
