@@ -24,6 +24,7 @@ KOKI is a personal AI assistant being built from scratch as a public learning jo
 The goal isn't just to use AI APIs — it's to understand how an AI assistant actually works from the inside. Memory systems, conversation flow, context engineering, prompt design — every concept learned by building it, not just reading about it.
 
 Every feature is written by hand. Every bug is a lesson. Every week is a new chapter.
+CAREPEDIEM
 
 ---
 
