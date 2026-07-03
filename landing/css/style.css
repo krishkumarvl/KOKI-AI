@@ -51,6 +51,7 @@ RESET
 
 html{
     scroll-behavior:smooth;
+    scroll-padding-top:100px;
 }
 
 body{
@@ -568,6 +569,38 @@ font-size:54px;
 h2{
 
 font-size:36px;
+
+}
+
+.feature-grid,
+.alternate .feature-grid{
+
+    grid-template-columns:1fr;
+
+    gap:32px;
+
+}
+
+.feature-image img{
+
+    width:100%;
+
+}
+
+.feature-content h3{
+
+    font-size:44px;
+
+}
+
+.architecture-grid,
+.tech-grid,
+.build-status,
+.roadmap-grid,
+.design-grid,
+.toolkit-grid{
+
+    grid-template-columns:1fr;
 
 }
 
@@ -1710,7 +1743,7 @@ align-self:flex-start;
 
 }
 
-@media(max-width:992px){
+@media(max-width:900px){
 
 .feedback-grid{
 
@@ -1841,7 +1874,7 @@ font-weight:600;
 
 }
 
-@media(max-width:992px){
+@media(max-width:900px){
 
 .community-grid{
 
@@ -2017,7 +2050,7 @@ border-color:#0E6B50;
 
 }
 
-@media(max-width:992px){
+@media(max-width:900px){
 
 .builder-layout{
 
@@ -2055,7 +2088,7 @@ padding:56px 0;
 
 max-width:900px;
 
-margin:80px auto 0;
+margin:48px auto 0;
 
 position:relative;
 
@@ -2177,7 +2210,7 @@ opacity:.75;
 
 }
 
-@media(max-width:768px){
+@media(max-width:900px){
 
 .journey-timeline{
 
@@ -2572,7 +2605,7 @@ color:#0E6B50;
 
 }
 
-@media(max-width:700px){
+@media(max-width:900px){
 
     .letter-toc{
 
