@@ -161,81 +161,93 @@
 
                 <span class="section-tag">CURRENT BUILD STATUS</span>
 
-                <span class="week-version">Week 4 &bull; Alpha v1</span>
+                <span id="status-week-badge" class="week-version">Week 4 &bull; Alpha v1</span>
 
             </div>
 
-            <div class="progress-item">
-
-                <span>Overall Progress</span>
-
-                <strong>38%</strong>
-
+            <!-- Weekly Interactive Tabs -->
+            <div class="status-tabs" role="tablist" aria-label="Development Weeks">
+                <button class="status-tab" role="tab" aria-selected="false" aria-controls="status-content" data-week="1">Week 1</button>
+                <button class="status-tab" role="tab" aria-selected="false" aria-controls="status-content" data-week="2">Week 2</button>
+                <button class="status-tab" role="tab" aria-selected="false" aria-controls="status-content" data-week="3">Week 3</button>
+                <button class="status-tab active" role="tab" aria-selected="true" aria-controls="status-content" data-week="4">Week 4</button>
             </div>
 
-            <div class="progress-bar">
+            <div id="status-content" class="status-content-wrapper">
 
-                <div class="progress-fill" style="width:38%"></div>
+                <div class="progress-item">
 
-            </div>
+                    <span>Overall Progress</span>
 
-            <div class="status-grid">
-
-                <div>
-
-                    <h4>Completed</h4>
-
-                    <ul>
-
-                        <li>&#9989; Landing Website</li>
-
-                        <li>&#9989; Product Showcase</li>
-
-                        <li>&#9989; Memory Architecture</li>
-
-                        <li>&#9989; Community &amp; Feedback</li>
-
-                    </ul>
+                    <strong id="status-progress-text">38%</strong>
 
                 </div>
 
-                <div>
+                <div class="progress-bar">
 
-                    <h4>Currently Building</h4>
-
-                    <p>Tool Layer Integration</p>
+                    <div id="status-progress-fill" class="progress-fill" style="width:38%"></div>
 
                 </div>
 
-                <div>
+                <div class="status-grid">
 
-                    <h4>Next Milestone</h4>
+                    <div>
 
-                    <p>Voice Assistant</p>
+                        <h4>Completed</h4>
+
+                        <ul id="status-completed-list">
+
+                            <li>&#9989; Landing Website</li>
+
+                            <li>&#9989; Product Showcase</li>
+
+                            <li>&#9989; Memory Architecture</li>
+
+                            <li>&#9989; Community &amp; Feedback</li>
+
+                        </ul>
+
+                    </div>
+
+                    <div>
+
+                        <h4>Currently Building</h4>
+
+                        <p id="status-building-text">Tool Layer Integration</p>
+
+                    </div>
+
+                    <div>
+
+                        <h4>Next Milestone</h4>
+
+                        <p id="status-milestone-text">Voice Assistant</p>
+
+                    </div>
+
+                    <div>
+
+                        <h4>North Star</h4>
+
+                        <p id="status-northstar-text">KORAIN</p>
+
+                    </div>
 
                 </div>
 
-                <div>
+                <div class="status-footer">
 
-                    <h4>North Star</h4>
+                    <div class="lessons">
 
-                    <p>KORAIN</p>
+                        <h4>Lessons Learned This Sprint</h4>
 
-                </div>
+                        <p id="status-lesson-text">Build first, perfect later &mdash; shipping teaches more than planning ever does.</p>
 
-            </div>
+                    </div>
 
-            <div class="status-footer">
-
-                <div class="lessons">
-
-                    <h4>Lessons Learned This Sprint</h4>
-
-                    <p>Build first, perfect later &mdash; shipping teaches more than planning ever does.</p>
+                    <a href="#community" class="secondary-btn">Looking for curious builders &rarr;</a>
 
                 </div>
-
-                <a href="#community" class="secondary-btn">Looking for curious builders &rarr;</a>
 
             </div>
 
@@ -344,666 +356,383 @@
 
     </div>
 
-    <!-- Dashboard -->
+    <!-- ================= PRODUCT TOUR ================= -->
+    <div class="tour-container">
+        <div class="tour-wrapper">
+            <!-- Navigation arrows -->
+            <button class="tour-nav-btn prev" aria-label="Previous slide">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            <button class="tour-nav-btn next" aria-label="Next slide">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
 
-    <div class="feature">
+            <!-- Slider window -->
+            <div class="tour-slider" role="region" aria-label="Product Features Tour">
+                <div class="tour-slides-track">
+                    
+                    <!-- Slide 1: Dashboard -->
+                    <div class="tour-slide active" role="group" aria-roledescription="slide" aria-label="1 of 10" id="slide-dashboard">
+                        <div class="tour-image-container">
+                            <img src="assets/dashboard.png" alt="KOKI Dashboard" class="tour-image">
+                        </div>
+                        <div class="tour-info">
+                            <div class="tour-meta">
+                                <span class="tour-number">01</span>
+                                <span class="tour-status live">AVAILABLE</span>
+                            </div>
+                            <h3 class="tour-title">Dashboard</h3>
+                            <p class="tour-desc">
+                                The heart of KOKI OS. Instead of jumping between apps, everything important lives here—active projects, AI conversations, memories, tasks and daily progress in one calm workspace.
+                            </p>
+                            <div class="tour-highlights">
+                                <div class="highlight-card">
+                                    <span>Current Status</span>
+                                    <h4>Stable Alpha</h4>
+                                    <p>Core interface completed and actively evolving.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Currently Building</span>
+                                    <h4>Widget System</h4>
+                                    <p>Dynamic cards and personalized dashboard blocks.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Next Milestone</span>
+                                    <h4>Voice Integration</h4>
+                                    <p>Interact with KOKI naturally using speech.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="container feature-grid">
+                    <!-- Slide 2: Brain -->
+                    <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="2 of 10" id="slide-brain">
+                        <div class="tour-image-container">
+                            <img src="assets/brain.png" alt="KOKI Brain" class="tour-image" loading="lazy">
+                        </div>
+                        <div class="tour-info">
+                            <div class="tour-meta">
+                                <span class="tour-number">02</span>
+                                <span class="tour-status live">AVAILABLE</span>
+                            </div>
+                            <h3 class="tour-title">Brain</h3>
+                            <p class="tour-desc">
+                                The reasoning engine of KOKI. Context aware. Hinglish conversations. Tool calling. Intelligent planning.
+                            </p>
+                            <div class="tour-highlights single-action">
+                                <a href="#" class="primary-btn">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="feature-image">
+                    <!-- Slide 3: Memory -->
+                    <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="3 of 10" id="slide-memory">
+                        <div class="tour-image-container">
+                            <img src="assets/memory.png" alt="KOKI Memory" class="tour-image" loading="lazy">
+                        </div>
+                        <div class="tour-info">
+                            <div class="tour-meta">
+                                <span class="tour-number">03</span>
+                                <span class="tour-status live">AVAILABLE</span>
+                            </div>
+                            <h3 class="tour-title">Memory</h3>
+                            <p class="tour-desc">
+                                The long-term memory of KOKI. Conversations don't disappear after a chat ends. Interests, projects, preferences and important moments are remembered so future interactions become more personal and more useful.
+                            </p>
+                            <div class="tour-highlights">
+                                <div class="highlight-card">
+                                    <span>Current Status</span>
+                                    <h4>Persistent Memory</h4>
+                                    <p>Stores information across conversations.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Currently Building</span>
+                                    <h4>Biography Engine</h4>
+                                    <p>Create an evolving profile from memories.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Next Milestone</span>
+                                    <h4>Semantic Search</h4>
+                                    <p>Find memories naturally using meaning.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <img src="assets/dashboard.png">
+                    <!-- Slide 4: Projects -->
+                    <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="4 of 10" id="slide-projects">
+                        <div class="tour-image-container">
+                            <img src="assets/projects.png" alt="KOKI Projects" class="tour-image" loading="lazy">
+                        </div>
+                        <div class="tour-info">
+                            <div class="tour-meta">
+                                <span class="tour-number">04</span>
+                                <span class="tour-status live">AVAILABLE</span>
+                            </div>
+                            <h3 class="tour-title">Projects</h3>
+                            <p class="tour-desc">
+                                Build, organize and track everything you're creating. KOKI understands ongoing work and helps you manage ideas, development progress and future plans from one place.
+                            </p>
+                            <div class="tour-highlights">
+                                <div class="highlight-card">
+                                    <span>Current Status</span>
+                                    <h4>Project Tracking</h4>
+                                    <p>Organize ongoing work inside one workspace.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Currently Building</span>
+                                    <h4>Git Integration</h4>
+                                    <p>Connect repositories and development workflow.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Next Milestone</span>
+                                    <h4>Project Intelligence</h4>
+                                    <p>AI understands every project automatically.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            </div>
+                    <!-- Slide 5: Student Hub -->
+                    <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="5 of 10" id="slide-student">
+                        <div class="tour-image-container">
+                            <img src="assets/student.png" alt="KOKI Student Hub" class="tour-image" loading="lazy">
+                        </div>
+                        <div class="tour-info">
+                            <div class="tour-meta">
+                                <span class="tour-number">05</span>
+                                <span class="tour-status coming">COMING SOON</span>
+                            </div>
+                            <h3 class="tour-title">Student Hub</h3>
+                            <p class="tour-desc">
+                                Built for students who want one place to manage their academic life. Track assignments, attendance, exams, notes, PYQs and study progress without switching between multiple apps.
+                            </p>
+                            <div class="tour-highlights">
+                                <div class="highlight-card">
+                                    <span>Planned</span>
+                                    <h4>Study Dashboard</h4>
+                                    <p>Attendance, CGPA, exams and deadlines.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Future</span>
+                                    <h4>AI Study Assistant</h4>
+                                    <p>Summaries, quizzes and revision plans.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Vision</span>
+                                    <h4>Complete Academic OS</h4>
+                                    <p>Everything a student needs in one place.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="feature-content">
+                    <!-- Slide 6: Tasks -->
+                    <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="6 of 10" id="slide-tasks">
+                        <div class="tour-image-container">
+                            <img src="assets/tasks.png" alt="KOKI Tasks" class="tour-image" loading="lazy">
+                        </div>
+                        <div class="tour-info">
+                            <div class="tour-meta">
+                                <span class="tour-number">06</span>
+                                <span class="tour-status coming">COMING SOON</span>
+                            </div>
+                            <h3 class="tour-title">Tasks</h3>
+                            <p class="tour-desc">
+                                Organize your day with intelligent task management. Build habits, stay focused and let KOKI help prioritize what matters most.
+                            </p>
+                            <div class="tour-highlights">
+                                <div class="highlight-card">
+                                    <span>Planned</span>
+                                    <h4>Task Manager</h4>
+                                    <p>Create and organize daily work.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Future</span>
+                                    <h4>Deep Focus</h4>
+                                    <p>Pomodoro and distraction-free sessions.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Vision</span>
+                                    <h4>AI Planning</h4>
+                                    <p>Smart scheduling based on priorities.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="feature-top">
+                    <!-- Slide 7: World Monitor -->
+                    <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="7 of 10" id="slide-world">
+                        <div class="tour-image-container">
+                            <img src="assets/world.png" alt="KOKI World Monitor" class="tour-image" loading="lazy">
+                        </div>
+                        <div class="tour-info">
+                            <div class="tour-meta">
+                                <span class="tour-number">07</span>
+                                <span class="tour-status coming">COMING SOON</span>
+                            </div>
+                            <h3 class="tour-title">World Monitor</h3>
+                            <p class="tour-desc">
+                                Stay updated with real-time news, weather, finance and sports. One intelligent feed that keeps you informed without overwhelming you.
+                            </p>
+                            <div class="tour-highlights">
+                                <div class="highlight-card">
+                                    <span>Planned</span>
+                                    <h4>Global News</h4>
+                                    <p>Personalized daily briefings.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Future</span>
+                                    <h4>Finance</h4>
+                                    <p>Stocks, crypto and market updates.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Vision</span>
+                                    <h4>World Intelligence</h4>
+                                    <p>Your personal global dashboard.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <span class="feature-number">
-                        01
-                    </span>
+                    <!-- Slide 8: Arcade -->
+                    <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="8 of 10" id="slide-arcade">
+                        <div class="tour-image-container">
+                            <img src="assets/arcade.png" alt="KOKI Arcade" class="tour-image" loading="lazy">
+                        </div>
+                        <div class="tour-info">
+                            <div class="tour-meta">
+                                <span class="tour-number">08</span>
+                                <span class="tour-status coming">COMING SOON</span>
+                            </div>
+                            <h3 class="tour-title">Arcade</h3>
+                            <p class="tour-desc">
+                                Learning shouldn't always feel like studying. Arcade transforms learning into challenges, brain games and skill-based experiences designed to keep curiosity alive.
+                            </p>
+                            <div class="tour-highlights">
+                                <div class="highlight-card">
+                                    <span>Planned</span>
+                                    <h4>Mini Games</h4>
+                                    <p>Interactive games built for learning and fun.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Future</span>
+                                    <h4>Leaderboards</h4>
+                                    <p>Compete with friends and the community.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Vision</span>
+                                    <h4>Learn by Playing</h4>
+                                    <p>Gamified experiences that reward curiosity.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <span class="feature-status live">
-                        AVAILABLE
-                    </span>
+                    <!-- Slide 9: Tools -->
+                    <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="9 of 10" id="slide-tools">
+                        <div class="tour-image-container">
+                            <img src="assets/tools.png" alt="KOKI Tools" class="tour-image" loading="lazy">
+                        </div>
+                        <div class="tour-info">
+                            <div class="tour-meta">
+                                <span class="tour-number">09</span>
+                                <span class="tour-status coming">UNDER DEVELOPMENT</span>
+                            </div>
+                            <h3 class="tour-title">Tools</h3>
+                            <p class="tour-desc">
+                                KOKI will become an intelligent toolbox. Generate websites, documents, summaries, presentations and much more from a single workspace.
+                            </p>
+                            <div class="tour-highlights">
+                                <div class="highlight-card">
+                                    <span>Building</span>
+                                    <h4>Tool Layer</h4>
+                                    <p>The foundation powering every future capability.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Future</span>
+                                    <h4>AI Workspace</h4>
+                                    <p>Create documents, websites and workflows instantly.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Vision</span>
+                                    <h4>Everything Creator</h4>
+                                    <p>One place to build almost anything with AI.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 10: Settings -->
+                    <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="10 of 10" id="slide-settings">
+                        <div class="tour-image-container">
+                            <img src="assets/settings.png" alt="KOKI Settings" class="tour-image" loading="lazy">
+                        </div>
+                        <div class="tour-info">
+                            <div class="tour-meta">
+                                <span class="tour-number">10</span>
+                                <span class="tour-status live">AVAILABLE</span>
+                            </div>
+                            <h3 class="tour-title">Settings</h3>
+                            <p class="tour-desc">
+                                Make KOKI truly yours. Personalize appearance, preferences, memory controls and future AI integrations from one clean settings panel.
+                            </p>
+                            <div class="tour-highlights">
+                                <div class="highlight-card">
+                                    <span>Available</span>
+                                    <h4>Preferences</h4>
+                                    <p>Manage personalization and system behavior.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Future</span>
+                                    <h4>Themes</h4>
+                                    <p>Switch between Light and Dark Atelier modes.</p>
+                                </div>
+                                <div class="highlight-card">
+                                    <span>Vision</span>
+                                    <h4>Personal AI</h4>
+                                    <p>Complete control over how KOKI works for you.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
-
-                <h3>Dashboard</h3>
-
-                <p>
-                    The heart of KOKI OS. Instead of jumping between apps, everything important lives here—active projects, AI conversations, memories, tasks and daily progress in one calm workspace.
-                </p>
-
-                <div class="feature-highlights">
-
-                    <div class="highlight-card">
-                        <span>Current Status</span>
-                        <h4>Stable Alpha</h4>
-                        <p>Core interface completed and actively evolving.</p>
-                    </div>
-
-                    <div class="highlight-card">
-                        <span>Currently Building</span>
-                        <h4>Widget System</h4>
-                        <p>Dynamic cards and personalized dashboard blocks.</p>
-                    </div>
-
-                    <div class="highlight-card">
-                        <span>Next Milestone</span>
-                        <h4>Voice Integration</h4>
-                        <p>Interact with KOKI naturally using speech.</p>
-                    </div>
-
-                </div>
-
             </div>
 
+            <!-- Dots Indicators -->
+            <div class="tour-dots" role="tablist" aria-label="Slide indicators">
+                <button class="tour-dot active" role="tab" aria-selected="true" aria-label="Go to slide 1" data-slide="0"></button>
+                <button class="tour-dot" role="tab" aria-selected="false" aria-label="Go to slide 2" data-slide="1"></button>
+                <button class="tour-dot" role="tab" aria-selected="false" aria-label="Go to slide 3" data-slide="2"></button>
+                <button class="tour-dot" role="tab" aria-selected="false" aria-label="Go to slide 4" data-slide="3"></button>
+                <button class="tour-dot" role="tab" aria-selected="false" aria-label="Go to slide 5" data-slide="4"></button>
+                <button class="tour-dot" role="tab" aria-selected="false" aria-label="Go to slide 6" data-slide="5"></button>
+                <button class="tour-dot" role="tab" aria-selected="false" aria-label="Go to slide 7" data-slide="6"></button>
+                <button class="tour-dot" role="tab" aria-selected="false" aria-label="Go to slide 8" data-slide="7"></button>
+                <button class="tour-dot" role="tab" aria-selected="false" aria-label="Go to slide 9" data-slide="8"></button>
+                <button class="tour-dot" role="tab" aria-selected="false" aria-label="Go to slide 10" data-slide="9"></button>
+            </div>
         </div>
-
-    </div> 
-    <section class="story-break">
-
-    <div class="container narrow">
-
-        <h2>
-            One workspace.<br>
-            Less distraction.
-        </h2>
-
-        <p>
-
-            Most productivity apps ask you to adapt to them.
-
-            KOKI is being built with the opposite philosophy.
-
-            Your memories, projects, conversations and daily workflow should naturally live together.
-
-            That's why the Dashboard isn't just the first screen.
-
-            It's the beginning of every journey inside KOKI.
-
-        </p>
-
     </div>
-
 </section>
 
-    <!-- Brain -->
-
-    <div class="feature alternate">
-
-        <div class="container feature-grid">
-
-            <div class="feature-content">
-
-                <div class="feature-top">
-
-    <span class="feature-number">
-        02
-    </span>
-
-    <span class="feature-status live">
-        AVAILABLE
-    </span>
-
-</div>
-
-                <h3>Brain</h3>
-
-                <p>
-
-                    The reasoning engine of KOKI.
-
-                    Context aware.
-
-                    Hinglish conversations.
-
-                    Tool calling.
-
-                    Intelligent planning.
-
-                </p>
-
-                <a href="#" class="primary-btn">
-
-                    Learn More
-
-                </a>
-
-            </div>
-
-            <div class="feature-image">
-
-                <img src="assets/brain.png">
-
-            </div>
-
-        </div>
-
+<!-- ================= STORY BREAK ================= -->
+<section class="story-break">
+    <div class="container narrow">
+        <h2>One workspace.<br>Less distraction.</h2>
+        <p>
+            Most productivity apps ask you to adapt to them.
+            KOKI is being built with the opposite philosophy.
+            Your memories, projects, conversations and daily workflow should naturally live together.
+            That's why the Dashboard isn't just the first screen.
+            It's the beginning of every journey inside KOKI.
+        </p>
     </div>
-
-    <!-- Memory -->
-
-<div class="feature">
-
-    <div class="container feature-grid">
-
-        <div class="feature-image">
-
-            <img src="assets/memory.png" alt="KOKI Memory">
-
-        </div>
-
-        <div class="feature-content">
-
-            <div class="feature-top">
-
-                <span class="feature-number">
-                    03
-                </span>
-
-                <span class="feature-status live">
-                    AVAILABLE
-                </span>
-
-            </div>
-
-            <h3>Memory</h3>
-
-            <p>
-
-                The long-term memory of KOKI.
-
-                Conversations don't disappear after a chat ends.
-
-                Interests, projects, preferences and important moments are remembered so future interactions become more personal and more useful.
-
-            </p>
-
-            <div class="feature-highlights">
-
-                <div class="highlight-card">
-
-                    <span>Current Status</span>
-
-                    <h4>Persistent Memory</h4>
-
-                    <p>Stores information across conversations.</p>
-
-                </div>
-
-                <div class="highlight-card">
-
-                    <span>Currently Building</span>
-
-                    <h4>Biography Engine</h4>
-
-                    <p>Create an evolving profile from memories.</p>
-
-                </div>
-
-                <div class="highlight-card">
-
-                    <span>Next Milestone</span>
-
-                    <h4>Semantic Search</h4>
-
-                    <p>Find memories naturally using meaning.</p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div> 
-
-    <!-- Projects -->
-
-<div class="feature alternate">
-
-    <div class="container feature-grid">
-
-        <div class="feature-content">
-
-            <div class="feature-top">
-
-                <span class="feature-number">
-                    04
-                </span>
-
-                <span class="feature-status live">
-                    AVAILABLE
-                </span>
-
-            </div>
-
-            <h3>Projects</h3>
-
-            <p>
-
-                Build, organize and track everything you're creating.
-
-                KOKI understands ongoing work and helps you manage ideas, development progress and future plans from one place.
-
-            </p>
-
-            <div class="feature-highlights">
-
-                <div class="highlight-card">
-
-                    <span>Current Status</span>
-
-                    <h4>Project Tracking</h4>
-
-                    <p>Organize ongoing work inside one workspace.</p>
-
-                </div>
-
-                <div class="highlight-card">
-
-                    <span>Currently Building</span>
-
-                    <h4>Git Integration</h4>
-
-                    <p>Connect repositories and development workflow.</p>
-
-                </div>
-
-                <div class="highlight-card">
-
-                    <span>Next Milestone</span>
-
-                    <h4>Project Intelligence</h4>
-
-                    <p>AI understands every project automatically.</p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="feature-image">
-
-            <img src="assets/projects.png" alt="Projects">
-
-        </div>
-
-    </div>
-
-</div>  
-
-    <!-- Student Hub -->
-
-<div class="feature">
-
-    <div class="container feature-grid">
-
-        <div class="feature-image">
-
-            <img src="assets/student.png" alt="Student Hub">
-
-        </div>
-
-        <div class="feature-content">
-
-            <div class="feature-top">
-
-                <span class="feature-number">05</span>
-
-                <span class="feature-status coming">
-                    COMING SOON
-                </span>
-
-            </div>
-
-            <h3>Student Hub</h3>
-
-            <p>
-
-                Built for students who want one place to manage their academic life.
-                Track assignments, attendance, exams, notes, PYQs and study progress without switching between multiple apps.
-
-            </p>
-
-            <div class="feature-highlights">
-
-                <div class="highlight-card">
-                    <span>Planned</span>
-                    <h4>Study Dashboard</h4>
-                    <p>Attendance, CGPA, exams and deadlines.</p>
-                </div>
-
-                <div class="highlight-card">
-                    <span>Future</span>
-                    <h4>AI Study Assistant</h4>
-                    <p>Summaries, quizzes and revision plans.</p>
-                </div>
-
-                <div class="highlight-card">
-                    <span>Vision</span>
-                    <h4>Complete Academic OS</h4>
-                    <p>Everything a student needs in one place.</p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-    <!-- Tasks -->
-
-<div class="feature alternate">
-
-    <div class="container feature-grid">
-
-        <div class="feature-content">
-
-            <div class="feature-top">
-
-                <span class="feature-number">06</span>
-
-                <span class="feature-status coming">
-                    COMING SOON
-                </span>
-
-            </div>
-
-            <h3>Tasks</h3>
-
-            <p>
-
-                Organize your day with intelligent task management.
-                Build habits, stay focused and let KOKI help prioritize what matters most.
-
-            </p>
-
-            <div class="feature-highlights">
-
-                <div class="highlight-card">
-                    <span>Planned</span>
-                    <h4>Task Manager</h4>
-                    <p>Create and organize daily work.</p>
-                </div>
-
-                <div class="highlight-card">
-                    <span>Future</span>
-                    <h4>Deep Focus</h4>
-                    <p>Pomodoro and distraction-free sessions.</p>
-                </div>
-
-                <div class="highlight-card">
-                    <span>Vision</span>
-                    <h4>AI Planning</h4>
-                    <p>Smart scheduling based on priorities.</p>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="feature-image">
-
-            <img src="assets/tasks.png" alt="Tasks">
-
-        </div>
-
-    </div>
-
-</div>
-
-    <!-- World Monitor -->
-
-<div class="feature">
-
-    <div class="container feature-grid">
-
-        <div class="feature-image">
-
-            <img src="assets/world.png" alt="World Monitor">
-
-        </div>
-
-        <div class="feature-content">
-
-            <div class="feature-top">
-
-                <span class="feature-number">07</span>
-
-                <span class="feature-status coming">
-                    COMING SOON
-                </span>
-
-            </div>
-
-            <h3>World Monitor</h3>
-
-            <p>
-
-                Stay updated with real-time news, weather, finance and sports.
-                One intelligent feed that keeps you informed without overwhelming you.
-
-            </p>
-
-            <div class="feature-highlights">
-
-                <div class="highlight-card">
-                    <span>Planned</span>
-                    <h4>Global News</h4>
-                    <p>Personalized daily briefings.</p>
-                </div>
-
-                <div class="highlight-card">
-                    <span>Future</span>
-                    <h4>Finance</h4>
-                    <p>Stocks, crypto and market updates.</p>
-                </div>
-
-                <div class="highlight-card">
-                    <span>Vision</span>
-                    <h4>World Intelligence</h4>
-                    <p>Your personal global dashboard.</p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>  
-
-    <!-- Arcade -->
-
-<div class="feature alternate">
-
-    <div class="container feature-grid">
-
-        <div class="feature-content">
-
-            <div class="feature-top">
-
-                <span class="feature-number">08</span>
-
-                <span class="feature-status coming">
-                    COMING SOON
-                </span>
-
-            </div>
-
-            <h3>Arcade</h3>
-
-            <p>
-
-                Learning shouldn't always feel like studying.
-                Arcade transforms learning into challenges, brain games and skill-based experiences designed to keep curiosity alive.
-
-            </p>
-
-            <div class="feature-highlights">
-
-                <div class="highlight-card">
-                    <span>Planned</span>
-                    <h4>Mini Games</h4>
-                    <p>Interactive games built for learning and fun.</p>
-                </div>
-
-                <div class="highlight-card">
-                    <span>Future</span>
-                    <h4>Leaderboards</h4>
-                    <p>Compete with friends and the community.</p>
-                </div>
-
-                <div class="highlight-card">
-                    <span>Vision</span>
-                    <h4>Learn by Playing</h4>
-                    <p>Gamified experiences that reward curiosity.</p>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="feature-image">
-
-            <img src="assets/arcade.png" alt="Arcade">
-
-        </div>
-
-    </div>
-
-</div>
-
-    <!-- Tools -->
-
-<div class="feature">
-
-    <div class="container feature-grid">
-
-        <div class="feature-image">
-
-            <img src="assets/tools.png" alt="Tools">
-
-        </div>
-
-        <div class="feature-content">
-
-            <div class="feature-top">
-
-                <span class="feature-number">09</span>
-
-                <span class="feature-status coming">
-                    UNDER DEVELOPMENT
-                </span>
-
-            </div>
-
-            <h3>Tools</h3>
-
-            <p>
-
-                KOKI will become an intelligent toolbox.
-                Generate websites, documents, summaries, presentations and much more from a single workspace.
-
-            </p>
-
-            <div class="feature-highlights">
-
-                <div class="highlight-card">
-                    <span>Building</span>
-                    <h4>Tool Layer</h4>
-                    <p>The foundation powering every future capability.</p>
-                </div>
-
-                <div class="highlight-card">
-                    <span>Future</span>
-                    <h4>AI Workspace</h4>
-                    <p>Create documents, websites and workflows instantly.</p>
-                </div>
-
-                <div class="highlight-card">
-                    <span>Vision</span>
-                    <h4>Everything Creator</h4>
-                    <p>One place to build almost anything with AI.</p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div> 
-
-    <!-- Settings -->
-
-<div class="feature alternate">
-
-    <div class="container feature-grid">
-
-        <div class="feature-content">
-
-            <div class="feature-top">
-
-                <span class="feature-number">10</span>
-
-                <span class="feature-status live">
-                    AVAILABLE
-                </span>
-
-            </div>
-
-            <h3>Settings</h3>
-
-            <p>
-
-                Make KOKI truly yours.
-                Personalize appearance, preferences, memory controls and future AI integrations from one clean settings panel.
-
-            </p>
-
-            <div class="feature-highlights">
-
-                <div class="highlight-card">
-                    <span>Available</span>
-                    <h4>Preferences</h4>
-                    <p>Manage personalization and system behavior.</p>
-                </div>
-
-                <div class="highlight-card">
-                    <span>Future</span>
-                    <h4>Themes</h4>
-                    <p>Switch between Light and Dark Atelier modes.</p>
-                </div>
-
-                <div class="highlight-card">
-                    <span>Vision</span>
-                    <h4>Personal AI</h4>
-                    <p>Complete control over how KOKI works for you.</p>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="feature-image">
-
-            <img src="assets/settings.png" alt="Settings">
-
-        </div>
-
-    </div>
-
-</div>
-
 </section>
    
 
@@ -1252,49 +981,103 @@
     </div>
 
 </section>
- <section class="section">
+    <section class="section" id="tech-ecosystem-section">
 
-<div class="container">
+    <div class="container">
 
-<span class="section-tag">
+        <span class="section-tag">TECH STACK</span>
 
-TECH STACK
+        <h2 class="section-title">Powered by modern technologies.</h2>
 
-</span>
+        <div class="tech-ecosystem-wrapper">
+            <!-- Icon/Logo Grid -->
+            <div class="tech-logo-grid" role="tablist" aria-label="Technologies Used">
+                <button class="tech-logo-btn active" role="tab" aria-selected="true" aria-controls="tech-detail-panel" data-tech="python">
+                    <span class="tech-logo-icon">🐍</span>
+                    <span class="tech-logo-name">Python</span>
+                </button>
+                <button class="tech-logo-btn" role="tab" aria-selected="false" aria-controls="tech-detail-panel" data-tech="html5">
+                    <span class="tech-logo-icon">🌐</span>
+                    <span class="tech-logo-name">HTML5</span>
+                </button>
+                <button class="tech-logo-btn" role="tab" aria-selected="false" aria-controls="tech-detail-panel" data-tech="css3">
+                    <span class="tech-logo-icon">🎨</span>
+                    <span class="tech-logo-name">CSS3</span>
+                </button>
+                <button class="tech-logo-btn" role="tab" aria-selected="false" aria-controls="tech-detail-panel" data-tech="javascript">
+                    <span class="tech-logo-icon">⚡</span>
+                    <span class="tech-logo-name">JavaScript</span>
+                </button>
+                <button class="tech-logo-btn" role="tab" aria-selected="false" aria-controls="tech-detail-panel" data-tech="gemini">
+                    <span class="tech-logo-icon">✨</span>
+                    <span class="tech-logo-name">Google Gemini</span>
+                </button>
+                <button class="tech-logo-btn" role="tab" aria-selected="false" aria-controls="tech-detail-panel" data-tech="stitch">
+                    <span class="tech-logo-icon">🧵</span>
+                    <span class="tech-logo-name">Google Stitch</span>
+                </button>
+                <button class="tech-logo-btn" role="tab" aria-selected="false" aria-controls="tech-detail-panel" data-tech="claude">
+                    <span class="tech-logo-icon">⛈️</span>
+                    <span class="tech-logo-name">Claude</span>
+                </button>
+                <button class="tech-logo-btn" role="tab" aria-selected="false" aria-controls="tech-detail-panel" data-tech="chatgpt">
+                    <span class="tech-logo-icon">💬</span>
+                    <span class="tech-logo-name">ChatGPT</span>
+                </button>
+                <button class="tech-logo-btn" role="tab" aria-selected="false" aria-controls="tech-detail-panel" data-tech="antigravity">
+                    <span class="tech-logo-icon">🌌</span>
+                    <span class="tech-logo-name">Antigravity IDE</span>
+                </button>
+                <button class="tech-logo-btn" role="tab" aria-selected="false" aria-controls="tech-detail-panel" data-tech="github">
+                    <span class="tech-logo-icon">🐙</span>
+                    <span class="tech-logo-name">GitHub</span>
+                </button>
+                <button class="tech-logo-btn" role="tab" aria-selected="false" aria-controls="tech-detail-panel" data-tech="vscode">
+                    <span class="tech-logo-icon">💻</span>
+                    <span class="tech-logo-name">VS Code</span>
+                </button>
+                <button class="tech-logo-btn" role="tab" aria-selected="false" aria-controls="tech-detail-panel" data-tech="vercel">
+                    <span class="tech-logo-icon">▲</span>
+                    <span class="tech-logo-name">Vercel</span>
+                </button>
+                <button class="tech-logo-btn" role="tab" aria-selected="false" aria-controls="tech-detail-panel" data-tech="jotform">
+                    <span class="tech-logo-icon">📝</span>
+                    <span class="tech-logo-name">Jotform</span>
+                </button>
+            </div>
+            
+            <!-- Detail Panel Below -->
+            <div id="tech-detail-panel" class="tech-detail-card" role="tabpanel">
+                <div class="tech-detail-header">
+                    <h3 id="tech-detail-title">Python</h3>
+                    <a id="tech-detail-link" href="https://www.python.org" target="_blank" class="secondary-btn small-btn">
+                        Official Website &rarr;
+                    </a>
+                </div>
+                <div class="tech-detail-grid">
+                    <div class="tech-detail-col">
+                        <strong>Purpose</strong>
+                        <p id="tech-detail-purpose">Powers KOKI's backend reasoning, file operations, local database memory indexing, and automation scripts.</p>
+                    </div>
+                    <div class="tech-detail-col">
+                        <strong>Why it was chosen</strong>
+                        <p id="tech-detail-chosen">Industry-standard library ecosystem for AI integrations, clean syntax, and fast prototyping speed.</p>
+                    </div>
+                    <div class="tech-detail-col">
+                        <strong>Contribution to KOKI</strong>
+                        <p id="tech-detail-contrib">Acts as the core execution engine of the OS, driving conversational loops and managing system tool integrations.</p>
+                    </div>
+                    <div class="tech-detail-col">
+                        <strong>Current Usage</strong>
+                        <p id="tech-detail-usage">Active backend controller handling FastAPI endpoints, JSON database reads/writes, and background worker threads.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<h2 class="section-title">
+    </div>
 
-Powered by modern technologies.
-
-</h2>
-
-<div class="tech-grid">
-
-<div>Python</div>
-
-<div>Google Gemini</div>
-
-<div>FastAPI</div>
-
-<div>GitHub</div>
-
-<div>HTML5</div>
-
-<div>CSS3</div>
-
-<div>JavaScript</div>
-
-<div>JSON Memory</div>
-
-<div>VS Code</div>
-
-<div>Future APIs</div>
-
-</div>
-
-</div>
-
-</section>
+    </section>
 
 <section class="section">
 

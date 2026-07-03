@@ -375,21 +375,14 @@ HERO
 ========================= */
 
 .hero{
-
-padding:48px 0 48px;
-
+    padding:36px 0 40px;
 }
 
 .hero-grid{
-
     display:grid;
-
     grid-template-columns:1.1fr .9fr;
-
     align-items:center;
-
-    gap:80px;
-
+    gap:60px;
 }
 
 .build-badge{
@@ -427,15 +420,10 @@ padding:48px 0 48px;
 }
 
 .hero-buttons{
-
     display:flex;
-
     flex-wrap:wrap;
-
-    gap:18px;
-
-    margin-bottom:60px;
-
+    gap:16px;
+    margin-bottom:40px;
 }
 
 .hero-right img{
@@ -551,83 +539,78 @@ RESPONSIVE
 @media(max-width:900px){
 
 .hero-grid{
-
-grid-template-columns:1fr;
-
+    grid-template-columns:1fr;
+    gap:40px;
 }
 
 .status-grid{
-
-grid-template-columns:1fr 1fr;
-
+    grid-template-columns:1fr 1fr;
 }
 
 nav{
-
-display:none;
-
+    display:none;
 }
 
 h1{
-
-font-size:54px;
-
+    font-size:48px;
 }
 
 h2{
-
-font-size:36px;
-
+    font-size:32px;
 }
 
+/* Stack feature grids, image always on top */
 .feature-grid,
 .alternate .feature-grid{
-
     grid-template-columns:1fr;
+    gap:24px;
+}
 
-    gap:32px;
+/* On mobile, always show image first regardless of DOM order */
+.alternate .feature-image{
+    order:-1;
+}
 
+/* Uniform image height on mobile */
+.feature-image{
+    min-height:220px;
+    max-height:280px;
+}
+
+.feature-content{
+    max-width:100%;
 }
 
 .hero-buttons,
 .status-footer{
-
     flex-direction:column;
-
     align-items:stretch;
-
 }
 
 .primary-btn,
 .secondary-btn{
-
     width:100%;
-
     text-align:center;
-
-}
-
-.feature-image img{
-
-    width:100%;
-
 }
 
 .feature-content h3{
-
-    font-size:44px;
-
+    font-size:38px;
 }
 
 .architecture-grid,
-.tech-grid,
 .build-status,
 .roadmap-grid,
 .design-grid,
 .toolkit-grid{
-
     grid-template-columns:1fr;
+}
 
+.feature{
+    padding:40px 0;
+}
+
+.story-break{
+    padding:28px 0;
 }
 
 }
@@ -636,9 +619,7 @@ WHY KOKI
 ========================================== */
 
 .section{
-
-    padding:56px 0;
-
+    padding:48px 0;
 }
 
 .narrow{
@@ -790,90 +771,212 @@ FOUNDER LETTER
 } /* ==========================================
 INSIDE KOKI
 ========================================== */
-.feature{
+/* ==========================================
+   INSIDE KOKI - PRODUCT TOUR SLIDER
+   ========================================== */
 
-    padding:48px 0;
-
+.tour-container {
+    width: 100%;
+    margin-top: 48px;
 }
 
-.feature-grid{
-
-    display:grid;
-
-    grid-template-columns:1.1fr .9fr;
-
-    gap:56px;
-
-    align-items:center;
-
+.tour-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.alternate .feature-grid{
-
-    grid-template-columns:.9fr 1.1fr;
-
+/* Slider window */
+.tour-slider {
+    overflow: hidden;
+    width: 100%;
+    border-radius: var(--radius);
 }
 
-.feature-image img{
-
-    width:100%;
-
-    border-radius:24px;
-
-    border:1px solid var(--border);
-
-    box-shadow:0 35px 70px rgba(0,0,0,.08);
-
-    transition:.4s;
-
+.tour-slides-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
 }
 
-.feature-image img:hover{
-
-    transform:translateY(-8px);
-
+.tour-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.25;
+    transition: opacity 0.5s ease;
 }
 
-.feature-content h3{
-
-    font-size:64px;
-
-    margin:20px 0;
-
+.tour-slide.active {
+    opacity: 1;
 }
 
-.feature-content p{
+/* Screenshot styling */
+.tour-image-container {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    max-height: 520px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+    margin-bottom: 40px;
+}
 
-    font-size:21px;
+.tour-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-    line-height:1.9;
+.tour-slide.active .tour-image {
+    transform: scale(1.02);
+}
 
-    margin-bottom:35px;
+/* Slide Content area */
+.tour-info {
+    width: 100%;
+    text-align: left;
+    transform: translateY(20px);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 0 10px;
+}
 
+.tour-slide.active .tour-info {
+    transform: translateY(0);
+}
+
+.tour-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.tour-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 54px;
+    font-weight: 700;
+    color: var(--border);
+    line-height: 1;
+}
+
+.tour-title {
+    font-size: 40px;
+    margin-bottom: 16px;
+    color: var(--green);
+}
+
+.tour-desc {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 32px;
+    max-width: 800px;
+}
+
+.tour-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.tour-highlights.single-action {
+    display: block;
+}
+
+/* Navigation arrows */
+.tour-nav-btn {
+    position: absolute;
+    top: 260px; /* half of 520px max image container */
+    transform: translateY(-50%);
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: rgba(245, 240, 232, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.tour-nav-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.tour-nav-btn:hover {
+    background: var(--green);
+    color: white;
+    border-color: var(--green);
+    box-shadow: 0 8px 24px rgba(27, 94, 69, 0.15);
+}
+
+.tour-nav-btn.prev {
+    left: -70px;
+}
+
+.tour-nav-btn.next {
+    right: -70px;
+}
+
+/* Slide Indicator Dots */
+.tour-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 36px;
+}
+
+.tour-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.tour-dot:hover {
+    background: var(--green-light);
+}
+
+.tour-dot.active {
+    width: 32px;
+    border-radius: 6px;
+    background: var(--green);
 }
 
 .feature-status{
-
     display:inline-block;
-
     padding:8px 18px;
-
     border-radius:999px;
-
     font-size:12px;
-
     font-weight:700;
-
     letter-spacing:2px;
-
 }
 
 .live{
-
     background:#E7F1EB;
-
     color:var(--green);
-
 } .feature-list{
 
 margin-top:32px;
@@ -963,13 +1066,9 @@ line-height:1;
 }
 
 .feature-highlights{
-
-margin-top:40px;
-
-display:grid;
-
-gap:18px;
-
+    margin-top:28px;
+    display:grid;
+    gap:14px;
 }
 
 .highlight-card{
@@ -1025,31 +1124,22 @@ margin:0;
 font-size:16px;
 
 } .story-break{
-
-padding:48px 0;
-
-text-align:center;
-
+    padding:40px 0;
+    text-align:center;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
 }
 
 .story-break h2{
-
-font-size:56px;
-
-margin-bottom:25px;
-
+    font-size:44px;
+    margin-bottom:18px;
 }
 
 .story-break p{
-
-max-width:700px;
-
-margin:auto;
-
-font-size:20px;
-
-line-height:1.9;
-
+    max-width:660px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.85;
 } .coming{
 
 background:#FFF3D6;
@@ -1118,44 +1208,137 @@ font-size:18px;
 
 line-height:1.8;
 
-}  .tech-grid{
-
-display:grid;
-
-grid-template-columns:repeat(5,1fr);
-
-gap:18px;
-
-margin-top:36px;
-
+}  /* ==========================================
+   INTERACTIVE TECH ECOSYSTEM
+   ========================================== */
+.tech-ecosystem-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 36px;
+    width: 100%;
 }
 
-.tech-grid div{
-
-background:var(--surface);
-
-padding:22px;
-
-border-radius:18px;
-
-text-align:center;
-
-font-weight:600;
-
-border:1px solid var(--border);
-
-transition:.3s;
-
+.tech-logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 14px;
 }
 
-.tech-grid div:hover{
+.tech-logo-btn {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+    padding: 16px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition);
+}
 
-background:var(--green);
+.tech-logo-btn:hover {
+    transform: translateY(-5px) scale(1.03);
+    border-color: var(--green);
+    box-shadow: 0 10px 25px rgba(27, 94, 69, 0.06);
+}
 
-color:white;
+.tech-logo-btn.active {
+    background: var(--surface);
+    border-color: var(--green);
+    box-shadow: inset 0 0 0 1px var(--green);
+}
 
-transform:translateY(-5px);
+.tech-logo-icon {
+    font-size: 32px;
+    transition: var(--transition);
+}
 
+.tech-logo-btn:hover .tech-logo-icon {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.tech-logo-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    text-align: center;
+}
+
+/* Detail panel card */
+.tech-detail-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tech-detail-card.fade-out {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.tech-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 18px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.tech-detail-header h3 {
+    font-size: 32px;
+    color: var(--green);
+    margin: 0;
+}
+
+.small-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+    border-radius: 100px;
+}
+
+.tech-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 32px;
+}
+
+.tech-detail-col strong {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.tech-detail-col p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    margin: 0;
+}
+
+@media(max-width: 768px) {
+    .tech-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .tech-detail-card {
+        padding: 24px;
+    }
 }
 .build-status{
 
@@ -2391,6 +2574,51 @@ color:#0E6B50;
 
 }
 
+/* Weekly Interactive Tabs */
+.status-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.status-tab {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--muted);
+    padding: 8px 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: var(--transition);
+}
+
+.status-tab:hover {
+    color: var(--green);
+    background: rgba(27, 94, 69, 0.05);
+}
+
+.status-tab.active {
+    background: var(--green);
+    color: white;
+    border-color: var(--green);
+}
+
+.status-content-wrapper {
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.status-content-wrapper.fade-out {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
 .status-footer{
 
     margin-top:36px;
@@ -2434,11 +2662,17 @@ color:#0E6B50;
 }
 
 .subsection-title{
+    font-size:30px;
+    margin:44px 0 22px;
+}
 
-    font-size:32px;
-
-    margin:56px 0 28px;
-
+/* Uniform subtitle text below every section heading */
+.section-subtitle{
+    font-size:18px;
+    line-height:1.8;
+    color:var(--muted);
+    max-width:680px;
+    margin-bottom:36px;
 }
 
 /* ==========================================
@@ -2723,4 +2957,63 @@ color:#0E6B50;
 .current-team-strip strong{
 
     color:var(--green);
+}
+
+/* ==========================================
+   PRODUCT TOUR RESPONSIVE STYLES
+   ========================================== */
+@media (max-width: 1140px) {
+    .tour-nav-btn.prev {
+        left: 15px;
+    }
+    .tour-nav-btn.next {
+        right: 15px;
+    }
+}
+
+@media (max-width: 900px) {
+    .tour-nav-btn {
+        top: 28vw; /* aligns relative to responsive image height */
+        width: 44px;
+        height: 44px;
+        background: rgba(245, 240, 232, 0.9); /* slightly higher opacity on mobile */
+    }
+    .tour-highlights {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    .tour-title {
+        font-size: 32px;
+    }
+    .tour-image-container {
+        margin-bottom: 24px;
+    }
+    .tour-desc {
+        font-size: 16px;
+        margin-bottom: 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .tour-nav-btn {
+        top: 28vw;
+        width: 38px;
+        height: 38px;
+    }
+    .tour-nav-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    .tour-nav-btn.prev {
+        left: 10px;
+    }
+    .tour-nav-btn.next {
+        right: 10px;
+    }
+    .tour-number {
+        font-size: 40px;
+    }
+    .tour-title {
+        font-size: 26px;
+    }
 }
