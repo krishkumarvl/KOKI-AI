@@ -1,152 +1,374 @@
-# 📋 CHANGELOG
+# 📜 CHANGELOG
 
-All notable changes made during the development of **KOKI** are documented here.
+All notable changes to **Project KOKI** will be documented here.
 
----
+This project follows a weekly development log instead of traditional software releases because KOKI is being built publicly from scratch.
 
-# Week 1 — Building the Foundation
+Every week documents:
 
-## Overview
-
-The goal of the first week was simple:
-Instead of directly using an AI API, I wanted to understand how a basic AI assistant works internally.
-
-This week was focused on learning Python fundamentals while gradually turning a simple terminal program into a small assistant.
-
-### Features Added
-
-- Basic terminal-based AI assistant
-- Dictionary-based response system
-- Multiple predefined conversation topics
-- Randomized responses for more natural conversations
-- Greeting system
-- Current time support
-- Exit commands
-- Session conversation counter
-- File-based memory (`memory.txt`)
-- Remember command
-- Recall saved memories
-
-### What I Learned
-
-- Python functions
-- Dictionaries
-- Conditional statements
-- Loops
-- File handling
-- Random module
-- Organizing a Python project
-- How a rule-based assistant works
+- 🚀 New Features
+- 🛠 Improvements
+- 🐞 Bug Fixes
+- 🧠 Lessons Learned
+- 🏗 Architecture Changes
+- 🎯 Future Plans
 
 ---
 
-#  Week 2 — From Rule-Based to AI-Assisted
+# Week 3 (Current Major Milestone)
 
-## Overview
+**Theme:** From Python Project → AI Product
 
-Week 2 was focused on making KOKI more intelligent.
+Status: ✅ Completed
 
-Instead of only replying from a dictionary, KOKI can now use Google's Gemini model whenever it doesn't know an answer.
-
-I also wanted KOKI to remember important information even after closing the program, so I replaced temporary memory with persistent JSON storage.
-
-Finally, I introduced project context so KOKI understands its own identity instead of behaving like a generic chatbot.
-
-### Features Added
-
-- Gemini API integration
-- Fallback response system
-- Persistent JSON memory
-- User profile memory
-- Interest tracking
-- Chat history
-- Project Context (`koki_context.md`)
-- Environment variable support using `.env`
-- GitHub-ready project structure
-
-### Improvements
-
-- Cleaner conversation flow
-- More natural responses
-- Better memory organization
-- Reduced repetitive replies
-- Better prompt design for Gemini
-- Improved code readability
-
-### Bugs Fixed
-
-- JSON loading errors
-- Duplicate Gemini responses
-- Memory initialization issues
-- Conversation flow improvements
-- Context loading fixes
-
-### What I Learned
-
-- Working with APIs
-- Environment variables
-- JSON storage
-- Prompt Engineering
-- Context Engineering
-- Debugging real project issues
-- Why architecture matters while building AI products
-
-## Week 2 — Final Update
-
-### Bugs Fixed & Improvements
-
-- Chat history now stores conversation pairs {user, koki} instead of only user messages
-- Last 5 conversation turns are now passed into Gemini prompt — KOKI can now understand follow-up questions
-- Added `forget` command — wrong memories can now be deleted from memory.txt
-- Hinglish interest detection improved — "mujhe X pasand hai" and "i love X" now work alongside "i like X"
-- User profile now shows memory.txt notes alongside interests
-- show history command now displays both sides of the conversation
+Date: June 2026
 
 ---
 
+## 🚀 Major Highlights
+
+Week 3 completely transformed KOKI.
+
+Instead of only adding features, the focus shifted toward creating a scalable architecture, professional documentation and a real product identity.
+
+This week marks the transition from:
+
+```
+
+Simple AI Assistant
+
+↓
+
+KOKI AI Operating System
+
+```
+
 ---
 
-# Week 3 — From Script to Software
+# 🏗 Architecture Refactor
 
-## Overview
+### Added
 
-Week 3 was not about adding flashy features.
-It was about making KOKI look and feel like a real software project.
+- Modular project architecture
+- Dedicated Brain module
+- Dedicated Memory module
+- Central Configuration file
+- Better project organization
+- Cleaner imports
+- Better scalability
 
-The entire codebase was refactored from a single `koki.py` file into a clean modular structure — without changing any existing behavior.
+### Improved
 
-## Refactor
+- Code readability
+- File organization
+- Maintainability
+- Separation of concerns
+- Future scalability
 
-- Split `koki.py` into proper modules
-- `config.py` — all constants, API keys, persona, responses dict
-- `brain/gemini.py` — Gemini client, prompt builder, ask_gemini()
-- `memory/manager.py` — load/save/forget memory, interest detection, chat history
-- `main.py` — CLI loop and command routing only
+### Result
 
-## New Folders
+Instead of one growing Python file...
 
-- `brain/` — AI logic
-- `memory/` — memory management
-- `data/` — all data files (memory.txt, koki_memory.json)
-- `prompts/` — KOKI system prompt as a markdown file
-- `docs/` — architecture.md + roadmap.md
+KOKI now follows a professional modular architecture that is easier to expand.
 
-## New Files
+---
 
-- `prompts/koki_prompt.md` — KOKI personality and rules
-- `docs/architecture.md` — full project flow diagram
-- `docs/roadmap.md` — phase-by-phase build plan
+# 🧠 Intelligence Improvements
 
-## Features Added
+### Added
 
-- YouTube Music integration — "play X" opens song directly in browser (ongoing)
-- Zero new behavior changes — all Week 2 features work exactly the same
+- Better Context Engineering
+- Improved Prompt Engineering
+- Better Memory Flow
+- Improved Conversation Routing
+- More Natural Responses
 
-## What I Learned
+### Improved
 
-- How to split a large Python file into modules
-- Why `__init__.py` exists and how imports work across folders
-- How folder structure makes a project maintainable
-- Why separating concerns (brain vs memory vs config) matters
-- How real open-source projects are organized 
- (week 3 final updates will be shown on Friday...this is only day 13th progress)
+- User understanding
+- Conversation continuity
+- Memory retrieval
+- Personality consistency
+
+---
+
+# 🎵 Music System
+
+### Added
+
+- YouTube Music integration
+- Better preprocessing
+- Natural music commands
+
+Example
+
+Play Believer
+
+↓
+
+Automatically opens YouTube Music search.
+
+---
+
+# 🧹 Preprocessing Layer
+
+Added preprocessing before sending requests to Gemini.
+
+Benefits
+
+- Cleaner inputs
+- Better intent detection
+- Better command routing
+- Easier future tool integration
+
+---
+
+# 📂 Documentation
+
+Created / Improved
+
+- README
+- CHANGELOG
+- Architecture planning
+- Roadmap planning
+- Product documentation
+
+Documentation is now considered part of the project instead of an afterthought.
+---
+
+# 🌐 Landing Website
+
+Week 3 also marked the beginning of KOKI's public identity.
+
+Instead of being only a Python project, KOKI now has its own dedicated product website.
+
+## Completed
+
+- Product Story
+- Hero Section
+- This Week Section
+- Project Status
+- Manifesto
+- Why KOKI
+- Dashboard Showcase
+- Brain Showcase
+- Memory Showcase
+- Architecture Showcase
+- Design Philosophy
+- Creative Toolkit
+- Current Expedition
+- Open Development
+- Community Section
+- Feedback Portal
+- Meet the Builder
+- Journey Timeline
+- "A Letter to Every Curious Mind"
+
+---
+
+# 🎨 Design System
+
+A complete design language was established.
+
+## Theme
+
+Digital Atelier
+
+## Color Palette
+
+Primary Background
+
+Warm Paper
+
+#F5F0E8
+
+Primary Green
+
+#1B5E45
+
+Surface
+
+#EFE7DA
+
+Accent Gold
+
+#D8A646
+
+## Typography
+
+Inter
+
+Cormorant Garamond
+
+## Design Principles
+
+- Calm
+- Minimal
+- Human
+- Editorial
+- Apple Inspired
+- Linear Inspired
+- Built in Public
+
+---
+
+# 🛠 Technologies Added
+
+Backend
+
+- Python 3.11
+- Gemini 2.5 Flash
+- JSON
+- dotenv
+
+Frontend
+
+- HTML5
+- CSS3
+
+Development
+
+- Git
+- GitHub
+- VS Code
+
+Design
+
+- Google Stitch
+- Claude
+- ChatGPT
+
+---
+
+# 📖 Product Identity
+
+Week 3 also defined what KOKI actually is.
+
+Before
+
+Python AI Assistant
+
+After
+
+Personal AI Operating System
+
+This week introduced:
+
+- Digital Atelier
+- Building in Public
+- Product Philosophy
+- Public Documentation
+- Community Driven Development
+
+---
+
+# 🧠 Lessons Learned
+
+Building software isn't only about writing code.
+
+It's about
+
+- Architecture
+- Documentation
+- Design
+- Storytelling
+- User Experience
+- Consistency
+
+Good software is built twice.
+
+First in your mind.
+
+Then in code.
+
+---
+
+# 🐞 Improvements
+
+Improved
+
+- Project Structure
+- Readability
+- Navigation
+- Maintainability
+- Planning
+- Documentation
+- Product Vision
+
+---
+
+# 📊 Week 3 Summary
+
+Files Created
+
+- Landing Website
+- Documentation
+- Design System
+- Architecture Plan
+
+Files Updated
+
+- main.py
+- README.md
+- CHANGELOG.md
+- config.py
+
+Project Status
+
+Architecture
+
+✅ Complete
+
+Landing Website
+
+🚧 In Progress
+
+Documentation
+
+✅ Complete
+
+Brain
+
+✅ Stable
+
+Memory
+
+✅ Stable
+
+Music
+
+✅ Working
+
+---
+
+# 🔜 Next Week
+
+Week 4
+
+Theme
+
+Tool Layer
+
+Planned Features
+
+- Web Search
+- Calculator
+- Time & Date
+- Weather
+- File Reader
+- Better Tool Calling
+- Smarter Command Routing
+
+Goal
+
+Transform KOKI from an AI chatbot into an AI assistant capable of interacting with the real world.
+
+---
+
+> Week 3 wasn't about adding more features.
+
+> It was about building the foundation that every future feature will stand on.
+
+---
+
+**End of Week 3**
