@@ -176,6 +176,12 @@ BUTTONS
 
     border-radius:16px;
 
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
     transition:var(--transition);
 
 }
@@ -424,6 +430,8 @@ padding:48px 0 48px;
 
     display:flex;
 
+    flex-wrap:wrap;
+
     gap:18px;
 
     margin-bottom:60px;
@@ -578,6 +586,24 @@ font-size:36px;
     grid-template-columns:1fr;
 
     gap:32px;
+
+}
+
+.hero-buttons,
+.status-footer{
+
+    flex-direction:column;
+
+    align-items:stretch;
+
+}
+
+.primary-btn,
+.secondary-btn{
+
+    width:100%;
+
+    text-align:center;
 
 }
 
@@ -1737,7 +1763,7 @@ color:rgba(255,255,255,.9);
 
 }
 
-.feedback-right .btn{
+.feedback-right .primary-btn{
 
 align-self:flex-start;
 
