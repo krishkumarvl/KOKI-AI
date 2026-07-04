@@ -381,4 +381,216 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // ==========================================
+    // INTERACTIVE DESIGN SLIDER
+    // ==========================================
+    const designTrack = document.querySelector('.design-slides-track');
+    const designSlides = Array.from(document.querySelectorAll('.design-slide'));
+    const designDots = Array.from(document.querySelectorAll('.design-dot'));
+    const designPrevBtn = document.querySelector('.design-nav-btn.prev');
+    const designNextBtn = document.querySelector('.design-nav-btn.next');
+    const designSlider = document.querySelector('.design-slider');
+
+    if (designTrack && designSlides.length > 0) {
+        let designIndex = 0;
+        const totalDesignSlides = designSlides.length;
+
+        function goToDesignSlide(index) {
+            if (index < 0) {
+                designIndex = totalDesignSlides - 1;
+            } else if (index >= totalDesignSlides) {
+                designIndex = 0;
+            } else {
+                designIndex = index;
+            }
+
+            designTrack.style.transform = `translateX(-${designIndex * 100}%)`;
+
+            designSlides.forEach((slide, i) => {
+                if (i === designIndex) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            designDots.forEach((dot, i) => {
+                if (i === designIndex) {
+                    dot.classList.add('active');
+                    dot.setAttribute('aria-selected', 'true');
+                } else {
+                    dot.classList.remove('active');
+                    dot.setAttribute('aria-selected', 'false');
+                }
+            });
+        }
+
+        function nextDesignSlide() {
+            goToDesignSlide(designIndex + 1);
+        }
+
+        function prevDesignSlide() {
+            goToDesignSlide(designIndex - 1);
+        }
+
+        if (designPrevBtn) designPrevBtn.addEventListener('click', prevDesignSlide);
+        if (designNextBtn) designNextBtn.addEventListener('click', nextDesignSlide);
+
+        designDots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                goToDesignSlide(idx);
+            });
+        });
+
+        // Keyboard navigation override for Design Slider (when in viewport)
+        window.addEventListener('keydown', (e) => {
+            if (!designSlider) return;
+            const rect = designSlider.getBoundingClientRect();
+            const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+            
+            if (inViewport) {
+                if (e.key === 'ArrowRight') {
+                    nextDesignSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevDesignSlide();
+                }
+            }
+        });
+
+        // Touch Swipe Support for Design Slider
+        let designStartX = 0;
+        let designEndX = 0;
+
+        designSlider.addEventListener('touchstart', (e) => {
+            designStartX = e.touches[0].clientX;
+        }, { passive: true });
+
+        designSlider.addEventListener('touchend', (e) => {
+            designEndX = e.changedTouches[0].clientX;
+            const diff = designStartX - designEndX;
+            const threshold = 50;
+
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    nextDesignSlide();
+                } else {
+                    prevDesignSlide();
+                }
+            }
+        }, { passive: true });
+    }
+
+    // Mini-interactive Toolkit sub-panel (Slide 8)
+    const toolkitData = {
+        stitch: {
+            title: "Google Stitch",
+            tag: "UI Exploration",
+            desc: "I gave it a simple text description of what I wanted and it turned that idea into an actual visual layout, then let me refine it from there. If you don't know design at all &mdash; like me &mdash; it's genuinely one of the best ways to see how an idea could look in different directions before you commit to anything."
+        },
+        claude: {
+            title: "Claude",
+            tag: "Frontend Partner",
+            desc: "Helped organize HTML structure, improve implementation and refine reusable components."
+        },
+        chatgpt: {
+            title: "ChatGPT",
+            tag: "Product Strategy",
+            desc: "Brainstorming partner for product direction, UX decisions, storytelling and long-term vision."
+        },
+        vscode: {
+            title: "VS Code",
+            tag: "Development",
+            desc: "The workshop where every experiment became real code."
+        },
+        github: {
+            title: "GitHub",
+            tag: "Building in Public",
+            desc: "Every commit is documented openly as part of the journey."
+        },
+        python: {
+            title: "Python",
+            tag: "The Brain",
+            desc: "Powers KOKI's backend logic, memory system and AI experiments."
+        }
+    };
+
+    const toolkitTabs = document.querySelectorAll('.toolkit-tab');
+    const toolkitPanel = document.getElementById('toolkit-panel');
+    const toolkitTitle = document.getElementById('toolkit-detail-title');
+    const toolkitTag = document.getElementById('toolkit-detail-tag');
+    const toolkitDesc = document.getElementById('toolkit-detail-desc');
+
+    if (toolkitTabs.length > 0 && toolkitPanel) {
+        toolkitTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const toolKey = tab.getAttribute('data-tool');
+                const data = toolkitData[toolKey];
+
+                if (!data) return;
+
+                // Toggle tabs
+                toolkitTabs.forEach(t => {
+                    t.classList.remove('active');
+                    t.setAttribute('aria-selected', 'false');
+                });
+                tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
+
+                // Fade out, swap, fade in
+                toolkitPanel.classList.add('fade-out');
+
+                setTimeout(() => {
+                    toolkitTitle.textContent = data.title;
+                    toolkitTag.textContent = data.tag;
+                    toolkitDesc.innerHTML = data.desc;
+                    toolkitPanel.classList.remove('fade-out');
+                }, 350);
+            });
+        });
+    }
+
+    // ==========================================
+    // SITE-WIDE SCROLL REVEAL (IntersectionObserver)
+    // ==========================================
+    const selectorsToReveal = [
+        '.section-tag',
+        '.section-title',
+        '.section-subtitle',
+        '.status-card',
+        '.tech-ecosystem-wrapper',
+        '.roadmap-card',
+        '.letter-chapter',
+        '.feedback-card',
+        '.community-card',
+        '.builder-card'
+    ];
+    
+    selectorsToReveal.forEach(selector => {
+        document.querySelectorAll(selector).forEach(el => {
+            if (!el.closest('.tour-slide') && !el.closest('.design-slide')) {
+                el.classList.add('scroll-reveal');
+            }
+        });
+    });
+
+    const revealElements = document.querySelectorAll('.scroll-reveal');
+
+    if ('IntersectionObserver' in window && revealElements.length > 0) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -20px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+        revealElements.forEach(el => el.classList.add('reveal-active'));
+    }
 });

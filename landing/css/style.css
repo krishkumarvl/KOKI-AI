@@ -1146,68 +1146,6 @@ background:#FFF3D6;
 
 color:#B26A00;
 
-}   /* ===============================
-ARCHITECTURE
-=============================== */
-
-.architecture-grid{
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:28px;
-
-margin-top:48px;
-
-}
-
-.architecture-card{
-
-background:white;
-
-border:1px solid var(--border);
-
-padding:40px;
-
-border-radius:22px;
-
-transition:.35s;
-
-}
-
-.architecture-card:hover{
-
-transform:translateY(-8px);
-
-box-shadow:0 25px 60px rgba(0,0,0,.07);
-
-}
-
-.architecture-card span{
-
-font-size:70px;
-
-font-family:'Cormorant Garamond',serif;
-
-color:#d7d0c2;
-
-}
-
-.architecture-card h3{
-
-margin:10px 0 20px;
-
-font-size:38px;
-
-}
-
-.architecture-card p{
-
-font-size:18px;
-
-line-height:1.8;
-
 }  /* ==========================================
    INTERACTIVE TECH ECOSYSTEM
    ========================================== */
@@ -1492,114 +1430,323 @@ font-weight:600;
 
 
 
-/* ===========================
-DESIGN PHILOSOPHY
-=========================== */
-
-.design-grid{
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:28px;
-
-margin-top:60px;
-
+/* ==========================================
+   INTERACTIVE DESIGN CAROUSEL / SLIDER
+   ========================================== */
+.design-slider {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto 0;
+    overflow: hidden;
 }
 
-.design-card{
-
-background:white;
-
-padding:36px;
-
-border-radius:24px;
-
-border:1px solid var(--border);
-
-transition:.35s;
-
+.design-slides-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
 }
 
-.design-card:hover{
-
-transform:translateY(-6px);
-
-box-shadow:0 20px 50px rgba(0,0,0,.06);
-
+.design-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.15;
+    transition: opacity 0.55s ease, transform 0.55s ease;
+    transform: scale(0.97);
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-.design-card h3{
-
-margin-bottom:18px;
-
-font-size:30px;
-
+.design-slide.active {
+    opacity: 1;
+    transform: scale(1);
 }
 
-.palette{
-
-display:flex;
-
-gap:30px;
-
-margin-top:30px;
-
+.design-slide-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 44px;
+    width: 100%;
+    min-height: 400px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
 }
 
-.palette div{
-
-text-align:center;
-
+.intro-slide-card {
+    background: var(--surface);
+    border-color: var(--green);
 }
 
-.swatch{
-
-display:block;
-
-width:70px;
-
-height:70px;
-
-border-radius:16px;
-
-margin-bottom:10px;
-
-border:1px solid var(--border);
-
+.slide-step-badge {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: inline-block;
 }
 
-.paper{
-
-background:#F5F0E8;
-
+.slide-title {
+    font-size: 38px;
+    color: var(--green);
+    margin-bottom: 20px;
 }
 
-.green{
-
-background:#1B5E45;
-
+.slide-lead {
+    font-size: 20px;
+    line-height: 1.9;
+    color: var(--text);
 }
 
-.surface{
-
-background:#EFE7DA;
-
+.design-slide-card p {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--text);
+    margin-bottom: 20px;
 }
 
-.design-card ul{
+.design-slide-card p:last-child {
+    margin-bottom: 0;
+}
 
-margin-top:18px;
+.inspiration-list {
+    margin-top: 14px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 
-padding-left:18px;
+.inspiration-list li {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+}
 
-display:flex;
+.design-feature-card h3 {
+    font-size: 32px;
+    color: var(--green);
+    margin-bottom: 18px;
+}
 
-flex-direction:column;
+.principles-bullets {
+    margin-top: 14px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 
-gap:14px;
+.principles-bullets li {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--green);
+}
 
+.palette {
+    display: flex;
+    gap: 30px;
+    margin-top: 24px;
+}
+
+.palette div {
+    text-align: center;
+}
+
+.swatch {
+    display: block;
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    border: 1px solid var(--border);
+}
+
+.paper {
+    background: #F5F0E8;
+}
+
+.green {
+    background: #1B5E45;
+}
+
+.surface {
+    background: #EFE7DA;
+}
+
+/* Toolkit ecosystem sub-tabs styling */
+.toolkit-ecosystem-card {
+    min-height: 480px;
+}
+
+.toolkit-ecosystem {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+.toolkit-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+}
+
+.toolkit-tab {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--muted);
+    padding: 6px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: var(--transition);
+}
+
+.toolkit-tab:hover {
+    color: var(--green);
+    background: rgba(27, 94, 69, 0.05);
+}
+
+.toolkit-tab.active {
+    background: var(--green);
+    color: white;
+}
+
+.toolkit-detail-panel {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+    padding: 24px;
+    min-height: 160px;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    opacity: 1;
+    transform: translateY(0);
+    box-sizing: border-box;
+}
+
+.toolkit-detail-panel.fade-out {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+.toolkit-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.toolkit-detail-header h4 {
+    font-size: 24px;
+    margin: 0;
+    color: var(--green);
+}
+
+.tech-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--green);
+    background: rgba(27, 94, 69, 0.08);
+    padding: 6px 12px;
+    border-radius: 100px;
+    font-weight: 600;
+}
+
+#toolkit-detail-desc {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text);
+    margin: 0;
+}
+
+/* Controls */
+.design-slider-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    padding: 0 10px;
+}
+
+.design-nav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid var(--border);
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: var(--transition);
+    outline: none;
+}
+
+.design-nav-btn:hover {
+    background: var(--green);
+    color: white;
+    border-color: var(--green);
+}
+
+.design-dot-indicators {
+    display: flex;
+    gap: 10px;
+}
+
+.design-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: var(--transition);
+    outline: none;
+}
+
+.design-dot.active {
+    background: var(--green);
+    transform: scale(1.2);
+}
+
+@media(max-width: 768px) {
+    .design-slide-card {
+        padding: 28px;
+        min-height: 450px;
+    }
+    .slide-title {
+        font-size: 28px;
+    }
+    .slide-lead {
+        font-size: 18px;
+    }
+    .design-slide-card p {
+        font-size: 16px;
+    }
 }
 /* ==========================
 KEEP THE INNER CHILD
@@ -1711,69 +1858,7 @@ margin:70px auto;
     margin-bottom:60px;
 }
 
-.toolkit-grid{
 
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:28px;
-
-}
-
-.tool-card{
-
-    background:#FBF8F2;
-    border:1px solid #DDD5C8;
-    border-radius:24px;
-    padding:34px;
-    transition:.35s ease;
-
-}
-
-.tool-card:hover{
-
-    transform:translateY(-8px);
-
-    box-shadow:0 18px 45px rgba(0,0,0,.08);
-
-}
-
-.tool-header{
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-
-}
-
-.tool-header h4{
-
-    font-size:28px;
-    color:#1B1B1B;
-
-}
-
-.tool-header span{
-
-    font-size:13px;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    color:#0E6B50;
-    background:#E8F2EC;
-    padding:8px 14px;
-    border-radius:100px;
-
-}
-
-.tool-card p{
-
-    font-size:17px;
-    color:#666;
-    line-height:1.9;
-
-}
 
 .toolkit-note{
 
@@ -2284,157 +2369,6 @@ font-size:60px;
 }
 
 } /* ==========================================
-THE JOURNEY
-========================================== */
-
-.journey-section{
-
-padding:56px 0;
-
-}
-
-.journey-timeline{
-
-max-width:900px;
-
-margin:48px auto 0;
-
-position:relative;
-
-padding-left:45px;
-
-}
-
-.journey-timeline::before{
-
-content:"";
-
-position:absolute;
-
-left:13px;
-
-top:0;
-
-bottom:0;
-
-width:3px;
-
-background:#DDD5C8;
-
-}
-
-.journey-item{
-
-position:relative;
-
-margin-bottom:70px;
-
-}
-
-.journey-dot{
-
-width:28px;
-
-height:28px;
-
-background:white;
-
-border:4px solid #0E6B50;
-
-border-radius:50%;
-
-position:absolute;
-
-left:-46px;
-
-top:5px;
-
-}
-
-.journey-dot.active{
-
-background:#0E6B50;
-
-}
-
-.journey-content{
-
-background:#FBF8F2;
-
-border:1px solid #DDD5C8;
-
-padding:32px;
-
-border-radius:22px;
-
-transition:.35s;
-
-}
-
-.journey-content:hover{
-
-transform:translateY(-6px);
-
-box-shadow:0 18px 40px rgba(0,0,0,.08);
-
-}
-
-.journey-date{
-
-display:inline-block;
-
-margin-bottom:12px;
-
-font-size:13px;
-
-letter-spacing:1px;
-
-text-transform:uppercase;
-
-color:#0E6B50;
-
-font-weight:600;
-
-}
-
-.journey-content h3{
-
-font-size:30px;
-
-margin-bottom:16px;
-
-}
-
-.journey-content p{
-
-line-height:1.9;
-
-color:#666;
-
-}
-
-.future .journey-content{
-
-opacity:.75;
-
-}
-
-@media(max-width:900px){
-
-.journey-timeline{
-
-padding-left:30px;
-
-}
-
-.journey-dot{
-
-left:-31px;
-
-}
-
-}
-/* ==========================================
 A LETTER TO EVERY CURIOUS MIND
 ========================================== */
 
@@ -3015,5 +2949,27 @@ color:#0E6B50;
     }
     .tour-title {
         font-size: 26px;
+    }
+}
+
+/* ==========================================
+   SCROLL REVEAL ANIMATIONS
+   ========================================== */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.scroll-reveal.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-reveal {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        transition: none !important;
     }
 }
