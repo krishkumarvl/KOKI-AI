@@ -10,6 +10,7 @@ from brain.search_tool import web_search
 from brain.music import play_on_youtube_music
 from brain.git_tool import git_commit
 from brain.browser import open_website
+from brain.calculator import calculate
 from brain.tool_router import detect_tool
 from config import RESPONSES, EXIT_WORDS
 from brain.gemini import ask_gemini
@@ -164,6 +165,15 @@ def respond(msg, name):
         save_json_memory(user_memory)
         print(f"KOKI: {reply}")
         return
+    
+    # --─ calculate ──
+    if tool == "calculator":
+        expression = msg_lower.replace("calculate ", "", 1).strip()
+        reply = calculate(expression)
+        update_last_reply(user_memory, reply)
+        save_json_memory(user_memory)
+        print("KOKI:", reply)
+        return
 
     # ── forget ──
     if msg_lower.startswith("forget "):
@@ -204,7 +214,58 @@ def respond(msg, name):
     if msg_lower == "version":
        print("KOKI:", VERSION)
        return
+    # ── help menu ──
+    if msg_lower in ["help", "commands", "menu"]:
+        print("""
+═══════════════════════════════════════
+            🤖 KOKI HELP
+═══════════════════════════════════════
 
+🧠 Memory
+• remember I like coffee
+• forget coffee
+• what do you remember
+
+🎵 Music
+• play believer
+• play shape of you
+
+🌐 Browser
+• open github
+• open youtube
+• open linkedin
+• open chatgpt
+
+🔍 Search
+• search python
+• search latest AI news
+
+🧮 Calculator
+• calculate 25+30
+• calculate sqrt(144)
+
+⚙️ Git
+• git commit Week 4 Complete
+
+💬 General
+• who are you
+• what do you know about me
+• show history
+
+👋 Exit
+• bye
+• exit
+• quit
+
+═══════════════════════════════════════
+Built by Krish Kumar | Kryphix.co
+═══════════════════════════════════════
+""")
+
+    update_last_reply(user_memory, "Displayed help menu.")
+    save_json_memory(user_memory)
+    return
+    
     # ── dictionary match ──
     matched_key = find_dictionary_match(msg_lower)
     if matched_key:

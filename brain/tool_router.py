@@ -27,5 +27,9 @@ def detect_tool(message: str):
     # Browser
     if message.startswith("open "):
         return "browser"
+    
+    # Calculator
+    if message.startswith("calculate "):
+        return "calculator"
 
     return None
