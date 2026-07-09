@@ -372,3 +372,41 @@ Transform KOKI from an AI chatbot into an AI assistant capable of interacting wi
 ---
 
 **End of Week 3**
+---
+
+# Week 4 — Tools Layer
+
+## Overview
+
+Week 4 was about giving KOKI real superpowers — connecting it to the outside world for the first time.
+
+Three major integrations were added, each as a clean separate module inside `brain/`.
+
+## Features Added
+
+### YouTube Direct Play
+- Command: `play tum hi ho`
+- `yt-dlp` searches YouTube, extracts direct video ID, opens exact video in browser
+- No more search page — direct video
+
+### Git Auto-Commit
+- Command: `git commit Week 4 - my message`
+- `subprocess` runs git add . → git commit -m → git push automatically
+- KOKI committed its own Week 4 code using this feature
+
+### Web Search
+- Command: `search fifa world cup 2026 quarter final`
+- DuckDuckGo search via `ddgs` library — top 3 results with title, snippet, URL
+- Live real-world data inside KOKI terminal
+
+## New Files
+- `brain/git_tool.py` — git auto-commit module
+- `brain/search_tool.py` — web search module
+- `brain/music.py` — upgraded from browser search to direct video play
+
+## What I Learned
+- `subprocess` module — running terminal commands from Python
+- `yt-dlp` — YouTube data extraction without API key
+- `ddgs` — DuckDuckGo search (note: package was renamed from `duckduckgo-search`)
+- How to isolate each tool as a separate brain module
+- Why local-first routing matters — commands checked before any API call

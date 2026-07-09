@@ -95,6 +95,9 @@ KOKI has gradually evolved from a simple terminal chatbot into a modular AI syst
 | ⚙️ Modular Architecture | Separate Brain, Memory and Configuration layers | ✅ |
 | 📂 Organized Project Structure | Professional folder architecture | ✅ |
 | 📚 Documentation | Architecture, roadmap and changelog maintained | ✅ |
+| YouTube Direct Play | "play X" opens exact YouTube video | ✅ |
+| Git Auto-Commit | "git commit X" → auto add + commit + push | ✅ |
+| Web Search | "search X" → live DuckDuckGo results | ✅ |
 | 🌐 Public Landing Website | Dedicated website documenting the journey | 🚧 |
 | 👥 Community & Feedback | Building KOKI openly with public feedback | 🚧 |
 | 🛠 Tool Layer | Next generation capabilities under development | 🔄 |
@@ -109,9 +112,9 @@ KOKI has gradually evolved from a simple terminal chatbot into a modular AI syst
 |------|-------|:------:|
 | Week 1 | Dictionary Brain, File Memory & Random Responses | ✅ |
 | Week 2 | Gemini Integration, JSON Memory & Context Engineering | ✅ |
-| Week 3 | Modular Architecture, Product Design, Landing Website & Documentation | ✅ |
-| Week 4 | Tool Layer & External Integrations | 🔄 |
-| Week 5 | Voice Assistant | 🔮 |
+| Week 3 | Modular Architecture + YouTube Music Integration | ✅ Done |
+| Week 4 | YouTube Direct Play + Git Auto-Commit + Web Search | ✅ Done |
+| Week 5 | FastAPI Web UI + Voice Assistant (Sarvam STT) | 🔜 Next |
 | Week 6 | Productivity Tools | 🔮 |
 | Week 7 | Desktop Application | 🔮 |
 | Week 8+ | KOKI Operating System | 🚀 |

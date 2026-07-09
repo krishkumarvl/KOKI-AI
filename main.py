@@ -1,11 +1,16 @@
-# main.py — Project KOKI Week 3
+# main.py — Project KOKI Week 4
 import re
 import random
 from datetime import datetime
+from config import VERSION
+from brain.tool_registry import TOOLS
+from brain.tool_executor import execute_tool
 from brain.preprocess import normalize_message
 from brain.search_tool import web_search
 from brain.music import play_on_youtube_music
 from brain.git_tool import git_commit
+from brain.browser import open_website
+from brain.tool_router import detect_tool
 from config import RESPONSES, EXIT_WORDS
 from brain.gemini import ask_gemini
 from memory.manager import (
@@ -38,7 +43,7 @@ def find_dictionary_match(msg):
 
 def greet():
     print("=" * 40)
-    print("   KOKI v1 - Your Personal AI")
+    print(f"KOKI {VERSION} - Your Personal AI")
     print("   Built by Krish Kumar")
     print("=" * 40)
 
@@ -62,6 +67,8 @@ def respond(msg, name):
     global conversation_count
 
     msg_lower = normalize_message(msg)
+        # Detect if user wants to use a tool
+    tool = detect_tool(msg_lower)
 
     if not msg_lower:
         print("KOKI: Kuch toh likh bhai, main padhu kya?")
@@ -114,7 +121,7 @@ def respond(msg, name):
         return
     
     # ── web search ──
-    if msg_lower.startswith("search "):
+    if tool == "search":
         query = msg_lower.replace("search ", "", 1).strip()
         if query:
             reply = web_search(query)
@@ -126,7 +133,7 @@ def respond(msg, name):
         return
     
     # ── git commit ──
-    if msg_lower.startswith("git commit "):
+    if tool == "git":
         message = msg_lower.replace("git commit ", "", 1).strip()
         if message:
             reply = git_commit(message)
@@ -138,12 +145,21 @@ def respond(msg, name):
         return
     
     # ── play music ──
-    if msg_lower.startswith("play "):
+    if tool == "music":
         query = msg_lower.replace("play ", "", 1).strip()
         if query:
             reply = play_on_youtube_music(query)
         else:
             reply = "Kya play karun bhai, bata toh sahi."
+        update_last_reply(user_memory, reply)
+        save_json_memory(user_memory)
+        print(f"KOKI: {reply}")
+        return
+    
+    # ── open website ──
+    if tool == "browser":
+        site = msg_lower.replace("open ", "", 1).strip()
+        reply = open_website(site)
         update_last_reply(user_memory, reply)
         save_json_memory(user_memory)
         print(f"KOKI: {reply}")
@@ -184,6 +200,10 @@ def respond(msg, name):
         update_last_reply(user_memory, "Showed memories.")
         save_json_memory(user_memory)
         return
+    
+    if msg_lower == "version":
+       print("KOKI:", VERSION)
+       return
 
     # ── dictionary match ──
     matched_key = find_dictionary_match(msg_lower)

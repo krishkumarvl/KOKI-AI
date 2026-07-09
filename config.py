@@ -2,6 +2,8 @@
 import os
 import random
 from dotenv import load_dotenv
+DEBUG = False
+VERSION = "0.4.0-alpha"
 
 load_dotenv()
 
