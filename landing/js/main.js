@@ -162,15 +162,17 @@ document.addEventListener('DOMContentLoaded', () => {
             version: "Week 4 &bull; Alpha v0.4",
             progress: "45%",
             completed: [
-                "&#9989; YouTube Direct Play (yt-dlp)",
-                "&#9989; Git Auto-Commit from KOKI",
-                "&#9989; Web Search via DuckDuckGo",
-                "&#9989; Landing Page Week 4 Update"
+                "&#9989; Tool Layer Development (DuckDuckGo Web Search)",
+                "&#9989; Direct YouTube Playback via yt-dlp",
+                "&#9989; Git Commit Integration from KOKI",
+                "&#9989; Landing Page v2 + Interactive Product Tour",
+                "&#9989; Vercel Deployment (public URL live)",
+                "&#9989; Antigravity IDE workflow established"
             ],
             building: "FastAPI Web UI",
             next: "Voice Assistant (Sarvam STT)",
             northStar: "KORAIN",
-            lesson: "KOKI committed its own code using the git integration we just built. That's the moment it started feeling real."
+            lesson: "KOKI committed its own code using the git integration we built this week. That\u2019s the moment it started feeling real."
         }
     };
 
@@ -384,103 +386,103 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // INTERACTIVE DESIGN SLIDER
+    // INTERACTIVE DESIGN NOTEBOOK (replaces old slider)
     // ==========================================
-    const designTrack = document.querySelector('.design-slides-track');
-    const designSlides = Array.from(document.querySelectorAll('.design-slide'));
-    const designDots = Array.from(document.querySelectorAll('.design-dot'));
-    const designPrevBtn = document.querySelector('.design-nav-btn.prev');
-    const designNextBtn = document.querySelector('.design-nav-btn.next');
-    const designSlider = document.querySelector('.design-slider');
+    const nbChapterBtns = Array.from(document.querySelectorAll('.nb-chapter-btn'));
+    const nbEntries = Array.from(document.querySelectorAll('.nb-entry'));
+    const nbProgressFill = document.getElementById('nbProgressFill');
+    const nbCounter = document.getElementById('nbCounter');
+    const nbPrevBtn = document.getElementById('nbPrevBtn');
+    const nbNextBtn = document.getElementById('nbNextBtn');
+    const nbContentArea = document.getElementById('nbContentArea');
 
-    if (designTrack && designSlides.length > 0) {
-        let designIndex = 0;
-        const totalDesignSlides = designSlides.length;
+    if (nbChapterBtns.length > 0 && nbEntries.length > 0) {
+        let nbCurrentIndex = 0;
+        const nbTotal = nbEntries.length;
 
-        function goToDesignSlide(index) {
-            if (index < 0) {
-                designIndex = totalDesignSlides - 1;
-            } else if (index >= totalDesignSlides) {
-                designIndex = 0;
-            } else {
-                designIndex = index;
-            }
+        function goToNbChapter(index) {
+            if (index < 0) index = 0;
+            if (index >= nbTotal) index = nbTotal - 1;
+            nbCurrentIndex = index;
 
-            designTrack.style.transform = `translateX(-${designIndex * 100}%)`;
+            // Update spine buttons
+            nbChapterBtns.forEach((btn, i) => {
+                btn.classList.toggle('active', i === nbCurrentIndex);
+                btn.setAttribute('aria-selected', i === nbCurrentIndex ? 'true' : 'false');
+            });
 
-            designSlides.forEach((slide, i) => {
-                if (i === designIndex) {
-                    slide.classList.add('active');
-                } else {
-                    slide.classList.remove('active');
+            // Fade out content
+            nbContentArea.classList.add('nb-fade-out');
+
+            setTimeout(() => {
+                // Show correct entry
+                nbEntries.forEach((entry, i) => {
+                    entry.classList.toggle('active', i === nbCurrentIndex);
+                });
+
+                // Update counter
+                if (nbCounter) nbCounter.textContent = `${nbCurrentIndex + 1} / ${nbTotal}`;
+
+                // Update progress bar
+                if (nbProgressFill) {
+                    const pct = ((nbCurrentIndex) / (nbTotal - 1)) * 100;
+                    nbProgressFill.style.width = pct + '%';
                 }
-            });
 
-            designDots.forEach((dot, i) => {
-                if (i === designIndex) {
-                    dot.classList.add('active');
-                    dot.setAttribute('aria-selected', 'true');
-                } else {
-                    dot.classList.remove('active');
-                    dot.setAttribute('aria-selected', 'false');
+                // Scroll active spine button into view on mobile
+                const activeBtn = nbChapterBtns[nbCurrentIndex];
+                if (activeBtn) {
+                    activeBtn.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
                 }
-            });
+
+                // Fade back in
+                nbContentArea.classList.remove('nb-fade-out');
+            }, 220);
         }
 
-        function nextDesignSlide() {
-            goToDesignSlide(designIndex + 1);
-        }
+        // Init
+        goToNbChapter(0);
 
-        function prevDesignSlide() {
-            goToDesignSlide(designIndex - 1);
-        }
-
-        if (designPrevBtn) designPrevBtn.addEventListener('click', prevDesignSlide);
-        if (designNextBtn) designNextBtn.addEventListener('click', nextDesignSlide);
-
-        designDots.forEach((dot, idx) => {
-            dot.addEventListener('click', () => {
-                goToDesignSlide(idx);
-            });
+        // Spine clicks
+        nbChapterBtns.forEach((btn, i) => {
+            btn.addEventListener('click', () => goToNbChapter(i));
         });
 
-        // Keyboard navigation override for Design Slider (when in viewport)
+        // Prev/next footer arrows
+        if (nbPrevBtn) nbPrevBtn.addEventListener('click', () => goToNbChapter(nbCurrentIndex - 1));
+        if (nbNextBtn) nbNextBtn.addEventListener('click', () => goToNbChapter(nbCurrentIndex + 1));
+
+        // Keyboard navigation
+        const notebookSection = document.getElementById('design-philosophy');
         window.addEventListener('keydown', (e) => {
-            if (!designSlider) return;
-            const rect = designSlider.getBoundingClientRect();
-            const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
-            
-            if (inViewport) {
-                if (e.key === 'ArrowRight') {
-                    nextDesignSlide();
-                } else if (e.key === 'ArrowLeft') {
-                    prevDesignSlide();
-                }
+            if (!notebookSection) return;
+            const rect = notebookSection.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+            if (!inView) return;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                goToNbChapter(nbCurrentIndex + 1);
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                goToNbChapter(nbCurrentIndex - 1);
             }
         });
 
-        // Touch Swipe Support for Design Slider
-        let designStartX = 0;
-        let designEndX = 0;
-
-        designSlider.addEventListener('touchstart', (e) => {
-            designStartX = e.touches[0].clientX;
-        }, { passive: true });
-
-        designSlider.addEventListener('touchend', (e) => {
-            designEndX = e.changedTouches[0].clientX;
-            const diff = designStartX - designEndX;
-            const threshold = 50;
-
-            if (Math.abs(diff) > threshold) {
-                if (diff > 0) {
-                    nextDesignSlide();
-                } else {
-                    prevDesignSlide();
+        // Touch swipe on content area
+        if (nbContentArea) {
+            let nbTouchStartX = 0;
+            nbContentArea.addEventListener('touchstart', (e) => {
+                nbTouchStartX = e.touches[0].clientX;
+            }, { passive: true });
+            nbContentArea.addEventListener('touchend', (e) => {
+                const diff = nbTouchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) {
+                    goToNbChapter(nbCurrentIndex + (diff > 0 ? 1 : -1));
                 }
-            }
-        }, { passive: true });
+            }, { passive: true });
+        }
     }
+
 
     // Mini-interactive Toolkit sub-panel (Slide 8)
     const toolkitData = {
