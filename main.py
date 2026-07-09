@@ -4,7 +4,7 @@ import random
 from datetime import datetime
 from brain.preprocess import normalize_message
 from brain.music import play_on_youtube_music
-
+from brain.git_tool import git_commit
 from config import RESPONSES, EXIT_WORDS
 from brain.gemini import ask_gemini
 from memory.manager import (
@@ -107,6 +107,18 @@ def respond(msg, name):
             reply = "I'll remember that."
         else:
             reply = "Remember kya karu bhai, bata toh sahi."
+        update_last_reply(user_memory, reply)
+        save_json_memory(user_memory)
+        print(f"KOKI: {reply}")
+        return
+    
+    # ── git commit ──
+    if msg_lower.startswith("git commit "):
+        message = msg_lower.replace("git commit ", "", 1).strip()
+        if message:
+            reply = git_commit(message)
+        else:
+            reply = "Commit message toh de bhai."
         update_last_reply(user_memory, reply)
         save_json_memory(user_memory)
         print(f"KOKI: {reply}")
