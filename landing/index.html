@@ -10,6 +10,11 @@
     <meta name="description"
         content="KOKI OS is an AI Operating System built in public by Krish Kumar under Kryphix.">
 
+    <meta property="og:title" content="KOKI OS — Digital Atelier">
+    <meta property="og:description" content="A personal AI assistant built in public. Memory-aware. Hinglish-native.">
+    <meta property="og:url" content="https://krishkumarvl.github.io/KOKI-AI">
+    <meta name="theme-color" content="#F5F0E8">
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -56,12 +61,25 @@
                 <a href="https://github.com/krishkumarvl/KOKI-AI" target="_blank"
                     class="nav-btn">
 
-                    GitHub →
+                    GitHub &rarr;
 
                 </a>
 
             </nav>
 
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#inside-koki">Product</a>
+            <a href="#roadmap">Journey</a>
+            <a href="#community">Community</a>
+            <a href="https://github.com/krishkumarvl/KOKI-AI" target="_blank" class="nav-btn">GitHub &rarr;</a>
         </div>
 
     </header>
@@ -140,7 +158,8 @@
 
                     src="assets/dashboard.png"
 
-                    alt="KOKI Dashboard">
+                    alt="KOKI Dashboard"
+                    loading="lazy">
 
             </div>
 
@@ -161,7 +180,7 @@
 
                 <span class="section-tag">CURRENT BUILD STATUS</span>
 
-                <span id="status-week-badge" class="week-version">Week 4 &bull; Alpha v1</span>
+                <span id="status-week-badge" class="week-version">Week 4 &bull; Alpha v0.4</span>
 
             </div>
 
@@ -179,13 +198,13 @@
 
                     <span>Overall Progress</span>
 
-                    <strong id="status-progress-text">38%</strong>
+                    <strong id="status-progress-text">45%</strong>
 
                 </div>
 
                 <div class="progress-bar">
 
-                    <div id="status-progress-fill" class="progress-fill" style="width:38%"></div>
+                    <div id="status-progress-fill" class="progress-fill" style="width:45%"></div>
 
                 </div>
 
@@ -258,7 +277,7 @@
     </section>
 
 
-
+<hr class="section-divider">
 
     <!-- ================= MANIFESTO ================= -->
 
@@ -334,6 +353,8 @@
 
 </section>
 
+
+<hr class="section-divider">
 
 <!-- ================= PRODUCT ================= -->
 
@@ -1085,6 +1106,8 @@ The Road Ahead
 
 </section>
 
+<hr class="section-divider">
+
 <!-- ================= FEEDBACK ================= -->
 
 <section class="feedback-section" id="feedback">
@@ -1379,53 +1402,21 @@ The Road Ahead
 
 
 
+<hr class="section-divider">
+
 <!-- ================= A LETTER TO EVERY CURIOUS MIND ================= -->
 
 <section id="letter" class="letter-section">
 
-    <div class="container narrow">
+    <div class="container">
+        <span class="section-tag">A LETTER FROM THE BUILDER</span>
+        <h2 class="section-title">Why I'm building this.</h2>
+    </div>
 
-        <span class="section-tag">
-            A LETTER TO EVERY CURIOUS MIND
-        </span>
+    <!-- Hidden chapter source data — content untouched, just rewrapped for JS access -->
+    <div class="chapter-source-data" aria-hidden="true">
 
-        <h2 class="letter-title">
-
-            Maybe growing up doesn't mean becoming serious.
-
-            <br>
-
-            Maybe it means protecting the part of you that still dreams.
-
-        </h2>
-
-        <p class="letter-preface">
-            Seven chapters. One honest look at why KOKI exists. Read it whenever you have
-            a quiet ten minutes &mdash; not scrolled past by accident.
-        </p>
-
-        <nav class="letter-toc">
-
-            <a href="#chapter-1"><span>01</span>The Boy Who Wanted to Build</a>
-            <a href="#chapter-2"><span>02</span>Iron Man</a>
-            <a href="#chapter-3"><span>03</span>Spider-Man</a>
-            <a href="#chapter-4"><span>04</span>&quot;What's the Point?&quot;</a>
-            <a href="#chapter-5"><span>05</span>Curiosity</a>
-            <a href="#chapter-6"><span>06</span>If Money Was Never the Problem</a>
-            <a href="#chapter-7"><span>07</span>What KOKI Really Means</a>
-            <a href="#letter-end"><span>08</span>One Day...</a>
-
-        </nav>
-
-        <div class="letter-body">
-
-            <!-- Chapter 1 -->
-
-            <details class="letter-chapter" id="chapter-1" name="letter-chapters">
-
-            <summary class="chapter-summary"><span class="chapter-index">01</span><span class="chapter-cta">Read this chapter</span></summary>
-
-            <div class="chapter-content">
+        <div id="chapter-content-1">
             <h3>The Boy Who Wanted to Build</h3>
 
 <p>
@@ -1507,20 +1498,9 @@ I didn't know it then.
 But that small feeling would quietly shape almost every decision I'd make later.
 
 </p>
+        </div>
 
-            </div>
-
-            </details>
-
-            <div class="letter-divider"></div>
-
-            <!-- Chapter 2 -->
-
-            <details class="letter-chapter" id="chapter-2" name="letter-chapters">
-
-            <summary class="chapter-summary"><span class="chapter-index">02</span><span class="chapter-cta">Read this chapter</span></summary>
-
-            <div class="chapter-content">
+        <div id="chapter-content-2">
             <h3>Iron Man</h3>
 
 <p>
@@ -1597,105 +1577,62 @@ Imagine losing everything.
 
 Your resources.
 
-Your comfort.
+Your team.
 
 Your freedom.
 
-Almost your life.
-
-And still choosing to build instead of giving up.
-
-That mindset changed the way I look at problems.
+And still choosing to build.
 
 </p>
 
 <p>
 
-Life will never be perfect.
+That's not technology.
 
-There will always be something missing.
-
-More money.
-
-More knowledge.
-
-Better equipment.
-
-More experience.
-
-But if I keep waiting for perfect conditions...
-
-I'll never build anything.
-
-</p>
-
-<p>
-
-Tony Stark taught me that you don't need perfect conditions.
-
-You need curiosity.
-
-You need resilience.
-
-And you need the courage to start with whatever you have.
+That's character.
 
 </p>
 
 <div class="letter-quote">
 
-Don't wait for the perfect workshop.
+The greatest tool Tony Stark ever had wasn't the suit.
 
-Start building with the tools you already have.
+It was the refusal to give up.
 
 </div>
 
 <p>
 
-I think that's why I enjoy creating so much.
+That's the part that stuck with me.
 
-Not because I know everything.
+Not the power.
 
-But because every project teaches me something I didn't know yesterday.
+Not the fame.
 
-Every bug.
-
-Every redesign.
-
-Every late night.
-
-Every failure.
-
-They're all part of becoming a better builder.
+But the idea that someone with nothing but their mind and their will can still build something extraordinary.
 
 </p>
 
 <p>
 
-Maybe one day I'll build something incredible.
+I think about that every time I'm frustrated.
 
-Maybe I won't.
+Every time something doesn't work.
 
-But I never want to lose that mindset.
-
-The belief that no matter how difficult life becomes...
-
-there is always something you can build next.
+Every time I feel like I'm going in circles.
 
 </p>
 
-            </div>
+<p>
 
-            </details>
+If he could build an arc reactor in a cave with scraps...
 
-            <div class="letter-divider"></div>
+I can probably fix this bug with a cup of tea and a bit more patience.
 
-            <!-- Chapter 3 -->
+</p>
+        </div>
 
-            <details class="letter-chapter" id="chapter-3" name="letter-chapters">
-
-            <summary class="chapter-summary"><span class="chapter-index">03</span><span class="chapter-cta">Read this chapter</span></summary>
-
-            <div class="chapter-content">
+        <div id="chapter-content-3">
             <h3>Spider-Man</h3>
 
 <p>
@@ -1861,20 +1798,9 @@ Someone who leaves people better than they found them.
 I think that's a much bigger achievement than building software.
 
 </p>
+        </div>
 
-            </div>
-
-            </details>
-
-            <div class="letter-divider"></div>
-
-            <!-- Chapter 4 -->
-
-            <details class="letter-chapter" id="chapter-4" name="letter-chapters">
-
-            <summary class="chapter-summary"><span class="chapter-index">04</span><span class="chapter-cta">Read this chapter</span></summary>
-
-            <div class="chapter-content">
+        <div id="chapter-content-4">
             <h3>"What's the Point?"</h3>
 
 <p>
@@ -2028,20 +1954,10 @@ Not to build the most famous product.
 But to build something that reminds me why I fell in love with technology in the first place.
 
 </p>
+        </div>
 
-            </div>
-
-            </details>
-
-            <div class="letter-divider"></div>
-
-            <!-- Chapter 5 -->
-
-            <details class="letter-chapter" id="chapter-5" name="letter-chapters">
-
-            <summary class="chapter-summary"><span class="chapter-index">05</span><span class="chapter-cta">Read this chapter</span></summary>
-
-            <div class="chapter-content"><h3>Curiosity</h3>
+        <div id="chapter-content-5">
+            <h3>Curiosity</h3>
 
 <p>
 
@@ -2218,20 +2134,10 @@ Not because I have to.
 Because I genuinely enjoy becoming a little different from who I was yesterday.
 
 </p>
+        </div>
 
-            </div>
-
-            </details>
-
-            <div class="letter-divider"></div>
-
-            <!-- Chapter 6 -->
-
-            <details class="letter-chapter" id="chapter-6" name="letter-chapters">
-
-            <summary class="chapter-summary"><span class="chapter-index">06</span><span class="chapter-cta">Read this chapter</span></summary>
-
-            <div class="chapter-content"><h3>If Money Was Never the Problem</h3>
+        <div id="chapter-content-6">
+            <h3>If Money Was Never the Problem</h3>
 
 <p>
 
@@ -2392,20 +2298,10 @@ But I hope one thing never changes.
 I hope I never stop using whatever I have to leave the world a little kinder than I found it.
 
 </p>
+        </div>
 
-            </div>
-
-            </details>
-
-            <div class="letter-divider"></div>
-
-            <!-- Chapter 7 -->
-
-            <details class="letter-chapter" id="chapter-7" name="letter-chapters">
-
-            <summary class="chapter-summary"><span class="chapter-index">07</span><span class="chapter-cta">Read this chapter</span></summary>
-
-            <div class="chapter-content"> <h3>What KOKI Really Means</h3>
+        <div id="chapter-content-7">
+            <h3>What KOKI Really Means</h3>
 
 <p>
 
@@ -2560,20 +2456,10 @@ Because every new version of KOKI is also a new version of myself.
 And that's something I never want to stop creating.
 
 </p>
+        </div>
 
-            </div>
-
-            </details>
-
-            <div class="letter-divider"></div>
-
-            <!-- Final -->
-
-            <details class="letter-chapter" id="letter-end" name="letter-chapters">
-
-            <summary class="chapter-summary"><span class="chapter-index">08</span><span class="chapter-cta">Read this chapter</span></summary>
-
-            <div class="chapter-content"> <h3>One Day...</h3>
+        <div id="chapter-content-8">
+            <h3>One Day...</h3>
 
 <p>
 
@@ -2720,62 +2606,97 @@ Maybe it'll be the courage to inspire someone else to build.
 That's a legacy I'd be proud of.
 
 </p>
-
-            </div>
-
-            </details>
-
         </div>
 
-    </div>
+    </div><!-- end .chapter-source-data -->
+
+    <!-- Tabbed Reader UI -->
+    <div class="container">
+    <div class="letter-reader">
+
+        <!-- Chapter navigation -->
+        <div class="letter-nav" role="tablist" aria-label="Letter chapters">
+            <button class="letter-nav-item active" data-chapter="0" role="tab" aria-selected="true">
+                <span class="chapter-num">01</span>
+                <span class="chapter-name">The Boy Who Wanted to Build</span>
+            </button>
+            <button class="letter-nav-item" data-chapter="1" role="tab" aria-selected="false">
+                <span class="chapter-num">02</span>
+                <span class="chapter-name">Iron Man</span>
+            </button>
+            <button class="letter-nav-item" data-chapter="2" role="tab" aria-selected="false">
+                <span class="chapter-num">03</span>
+                <span class="chapter-name">Spider-Man</span>
+            </button>
+            <button class="letter-nav-item" data-chapter="3" role="tab" aria-selected="false">
+                <span class="chapter-num">04</span>
+                <span class="chapter-name">"What's the Point?"</span>
+            </button>
+            <button class="letter-nav-item" data-chapter="4" role="tab" aria-selected="false">
+                <span class="chapter-num">05</span>
+                <span class="chapter-name">Curiosity</span>
+            </button>
+            <button class="letter-nav-item" data-chapter="5" role="tab" aria-selected="false">
+                <span class="chapter-num">06</span>
+                <span class="chapter-name">If Money Was Never the Problem</span>
+            </button>
+            <button class="letter-nav-item" data-chapter="6" role="tab" aria-selected="false">
+                <span class="chapter-num">07</span>
+                <span class="chapter-name">What KOKI Really Means</span>
+            </button>
+            <button class="letter-nav-item" data-chapter="7" role="tab" aria-selected="false">
+                <span class="chapter-num">08</span>
+                <span class="chapter-name">One Day...</span>
+            </button>
+        </div>
+
+        <!-- Content panel -->
+        <div class="letter-content-panel" role="tabpanel">
+            <div class="letter-chapter-display" id="letterDisplay">
+                <!-- Chapter content rendered here by JS -->
+            </div>
+        </div>
+
+    </div><!-- end .letter-reader -->
+    </div><!-- end .container -->
 
 </section>
-
-   
 
 
     <!-- ================= FOOTER ================= -->
 
     <footer>
 
-<div class="container">
+        <div class="container">
 
-<h2>
+            <div class="footer-inner">
 
-"One day you'll leave this world behind,
+                <div class="footer-brand">
+                    <h3>KOKI OS</h3>
+                    <span>Digital Atelier &middot; Built by Krish Kumar</span>
+                </div>
 
-so live a life you will remember."
+                <div class="footer-links">
+                    <a href="https://github.com/krishkumarvl/KOKI-AI" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/krishkumarvl" target="_blank">LinkedIn</a>
+                    <a href="https://instagram.com/krishkumarvl" target="_blank">Instagram</a>
+                    <a href="https://twitter.com/krishkumarvl" target="_blank">Twitter / X</a>
+                    <a href="mailto:kryphix.co@gmail.com">Contact</a>
+                </div>
 
-</h2>
+                <p class="footer-copy">&copy; 2025 Kryphix &middot; Progress is part of the product.</p>
 
-<p>
+            </div>
 
-— Avicii
+        </div>
 
-</p>
+    </footer>
 
-<br><br>
-
-<p>
-
-Carpe Diem.
-
-</p>
-
-<br>
-
-<span>
-
- this will be legen...wait for it...DARY!!!
- by Krish Kumar (or Barney)
-
-</span>
-
-</div>
-
-</footer>
-
-
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
 
     <script src="js/main.js"></script>
 

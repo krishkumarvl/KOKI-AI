@@ -502,34 +502,44 @@ MANIFESTO
 FOOTER
 ========================= */
 
-footer{
-
-    padding:64px 0;
-
-    text-align:center;
-
-    border-top:1px solid var(--border);
-
+footer {
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+  text-align: left;
 }
-
-footer p{
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:38px;
-
-    color:var(--text);
-
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-
-footer span{
-
-    display:block;
-
-    margin-top:20px;
-
-    color:var(--muted);
-
+.footer-brand h3 {
+  font-size: 20px;
+  font-family: 'Cormorant Garamond', serif;
+}
+.footer-brand span {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+.footer-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 14px;
+  color: var(--muted);
+  transition: var(--transition);
+}
+.footer-links a:hover { color: var(--green); }
+.footer-copy {
+  font-size: 13px;
+  color: var(--muted);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+}
+@media(max-width:900px) {
+  .footer-links { gap: 14px; }
 }
 
 /* =========================
@@ -619,7 +629,7 @@ WHY KOKI
 ========================================== */
 
 .section{
-    padding:48px 0;
+    padding: 60px 0;
 }
 
 .narrow{
@@ -2973,3 +2983,245 @@ color:#0E6B50;
         transition: none !important;
     }
 }
+
+/* ==========================================
+   SECTION DIVIDER
+   ========================================== */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+  opacity: 0.6;
+}
+
+/* ==========================================
+   BACK TO TOP BUTTON
+   ========================================== */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: var(--transition);
+  z-index: 998;
+  box-shadow: 0 4px 16px rgba(27,94,69,0.25);
+}
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--green-light);
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   HAMBURGER & MOBILE MENU
+   ========================================== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+}
+.mobile-menu a {
+  padding: 14px 24px;
+  color: var(--muted);
+  font-size: 15px;
+  border-bottom: 1px solid var(--border);
+}
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu .nav-btn {
+  margin: 12px 24px;
+  border-radius: 14px;
+  justify-content: center;
+}
+
+@media(max-width: 900px) {
+  nav { display: none; }
+  .hamburger { display: flex; }
+  .mobile-menu.open { display: flex; }
+}
+
+/* ==========================================
+   SCROLL SPY NAV ACTIVE
+   ========================================== */
+nav a.nav-active { color: var(--green); font-weight: 500; }
+
+/* ==========================================
+   LETTER READER — TABBED INTERFACE
+   ========================================== */
+.letter-section { padding: 60px 0; }
+
+.letter-reader {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 0;
+  margin-top: 48px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.letter-nav {
+  border-right: 1px solid var(--border);
+  padding: 12px 0;
+  background: var(--bg);
+}
+
+.letter-nav-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  background: none;
+  border: none;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition);
+}
+
+.letter-nav-item:hover {
+  background: var(--surface);
+}
+
+.letter-nav-item.active {
+  background: var(--surface);
+  border-left-color: var(--green);
+}
+
+.chapter-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green);
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+.chapter-name {
+  font-size: 13px;
+  color: var(--muted);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.4;
+}
+
+.letter-nav-item.active .chapter-name {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.letter-content-panel {
+  padding: 40px 48px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.letter-content-panel::-webkit-scrollbar { width: 4px; }
+.letter-content-panel::-webkit-scrollbar-track { background: transparent; }
+.letter-content-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+.letter-chapter-display {
+  transition: opacity 0.25s ease;
+}
+
+.letter-chapter-display.fade-out {
+  opacity: 0;
+}
+
+/* Hidden chapter source data */
+.chapter-source-data { display: none; }
+
+@media(max-width: 900px) {
+  .letter-reader {
+    grid-template-columns: 1fr;
+  }
+  .letter-nav {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    overflow-x: auto;
+    padding: 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .letter-nav-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 16px;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .letter-nav-item.active {
+    border-bottom-color: var(--green);
+    border-left: none;
+    background: var(--surface);
+  }
+  .letter-content-panel {
+    padding: 28px 20px;
+    max-height: 500px;
+  }
+}
+
+/* Letter content inside reader — keep existing quote/story styles */
+.letter-chapter-display h3 {
+  font-size: 36px;
+  margin-bottom: 28px;
+  color: var(--text);
+  font-family: 'Cormorant Garamond', serif;
+}
+.letter-chapter-display p {
+  font-size: 19px;
+  line-height: 2.1;
+  margin-bottom: 28px;
+  color: #4B4B4B;
+}
+.letter-chapter-display .letter-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--green);
+  margin: 56px 0;
+}
+.letter-chapter-display strong { color: var(--green); }
+.letter-chapter-display i { font-style: italic; }

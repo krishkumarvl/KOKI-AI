@@ -148,28 +148,29 @@ document.addEventListener('DOMContentLoaded', () => {
             version: "Week 3 &bull; Alpha v0.3",
             progress: "30%",
             completed: [
-                "&#9989; Interface Mockups",
-                "&#9989; Responsive Colors & Palette",
-                "&#9989; Setup Layout Setup"
-            ],
-            building: "Tool calling layer",
-            next: "Community and Feedback Hub",
-            northStar: "KORAIN",
-            lesson: "A great product deserves a calm interface. Visual noise is a distraction."
-        },
-        4: {
-            version: "Week 4 &bull; Alpha v1",
-            progress: "38%",
-            completed: [
-                "&#9989; Landing Website",
-                "&#9989; Product Showcase",
-                "&#9989; Memory Architecture",
-                "&#9989; Community & Feedback"
+                "&#9989; Modular Architecture (brain/, memory/, config.py)",
+                "&#9989; YouTube Music Integration",
+                "&#9989; Bug Fixes & Code Cleanup",
+                "&#9989; Landing Page Launch"
             ],
             building: "Tool Layer Integration",
-            next: "Voice Assistant",
+            next: "FastAPI Web UI",
             northStar: "KORAIN",
-            lesson: "Build first, perfect later &mdash; shipping teaches more than planning ever does."
+            lesson: "Clean architecture isn't about perfection — it's about making the next feature easier to build."
+        },
+        4: {
+            version: "Week 4 &bull; Alpha v0.4",
+            progress: "45%",
+            completed: [
+                "&#9989; YouTube Direct Play (yt-dlp)",
+                "&#9989; Git Auto-Commit from KOKI",
+                "&#9989; Web Search via DuckDuckGo",
+                "&#9989; Landing Page Week 4 Update"
+            ],
+            building: "FastAPI Web UI",
+            next: "Voice Assistant (Sarvam STT)",
+            northStar: "KORAIN",
+            lesson: "KOKI committed its own code using the git integration we just built. That's the moment it started feeling real."
         }
     };
 
@@ -592,5 +593,99 @@ document.addEventListener('DOMContentLoaded', () => {
         revealElements.forEach(el => revealObserver.observe(el));
     } else {
         revealElements.forEach(el => el.classList.add('reveal-active'));
+    }
+
+    // ==========================================
+    // BACK TO TOP BUTTON
+    // ==========================================
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        }, { passive: true });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // ==========================================
+    // HAMBURGER MENU
+    // ==========================================
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+            });
+        });
+    }
+
+    // ==========================================
+    // SCROLL SPY FOR NAV
+    // ==========================================
+    const spySections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        spySections.forEach(section => {
+            const sectionTop = section.offsetTop - 120;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('nav-active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('nav-active');
+            }
+        });
+    }, { passive: true });
+
+    // ==========================================
+    // LETTER READER — TABBED INTERFACE
+    // ==========================================
+    const letterNavItems = document.querySelectorAll('.letter-nav-item');
+    const letterDisplay = document.getElementById('letterDisplay');
+
+    const chapterContents = [
+        document.getElementById('chapter-content-1') ? document.getElementById('chapter-content-1').innerHTML : '',
+        document.getElementById('chapter-content-2') ? document.getElementById('chapter-content-2').innerHTML : '',
+        document.getElementById('chapter-content-3') ? document.getElementById('chapter-content-3').innerHTML : '',
+        document.getElementById('chapter-content-4') ? document.getElementById('chapter-content-4').innerHTML : '',
+        document.getElementById('chapter-content-5') ? document.getElementById('chapter-content-5').innerHTML : '',
+        document.getElementById('chapter-content-6') ? document.getElementById('chapter-content-6').innerHTML : '',
+        document.getElementById('chapter-content-7') ? document.getElementById('chapter-content-7').innerHTML : '',
+        document.getElementById('chapter-content-8') ? document.getElementById('chapter-content-8').innerHTML : ''
+    ];
+
+    if (letterNavItems.length > 0 && letterDisplay) {
+        letterDisplay.innerHTML = chapterContents[0];
+
+        letterNavItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                letterNavItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                letterDisplay.classList.add('fade-out');
+                setTimeout(() => {
+                    letterDisplay.innerHTML = chapterContents[index];
+                    letterDisplay.classList.remove('fade-out');
+                    // Scroll panel to top on chapter switch
+                    const panel = document.querySelector('.letter-content-panel');
+                    if (panel) panel.scrollTop = 0;
+                }, 250);
+            });
+        });
     }
 });
