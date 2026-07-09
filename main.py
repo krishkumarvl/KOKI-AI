@@ -3,6 +3,7 @@ import re
 import random
 from datetime import datetime
 from brain.preprocess import normalize_message
+from brain.search_tool import web_search
 from brain.music import play_on_youtube_music
 from brain.git_tool import git_commit
 from config import RESPONSES, EXIT_WORDS
@@ -107,6 +108,18 @@ def respond(msg, name):
             reply = "I'll remember that."
         else:
             reply = "Remember kya karu bhai, bata toh sahi."
+        update_last_reply(user_memory, reply)
+        save_json_memory(user_memory)
+        print(f"KOKI: {reply}")
+        return
+    
+    # ── web search ──
+    if msg_lower.startswith("search "):
+        query = msg_lower.replace("search ", "", 1).strip()
+        if query:
+            reply = web_search(query)
+        else:
+            reply = "Kya search karun bhai, bata toh sahi."
         update_last_reply(user_memory, reply)
         save_json_memory(user_memory)
         print(f"KOKI: {reply}")
