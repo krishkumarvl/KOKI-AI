@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KOKI OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+  <!-- Name Modal -->
+  <div class="modal" id="nameModal">
+    <div class="modal-box">
+      <h2>Welcome to KOKI OS</h2>
+      <p>What should I call you?</p>
+      <input type="text" id="nameInput" placeholder="Your name..." autofocus />
+      <button onclick="saveName()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- App -->
+  <div class="app" id="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <h1>KOKI</h1>
+        <span>Digital Atelier</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active">
+          <span class="nav-icon">💬</span> Brain
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">💾</span> Memory
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">🛠️</span> Tools
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">🌍</span> World
+        </a>
+      </nav>
+      <div class="sidebar-user">
+        <div class="user-avatar">K</div>
+        <div class="user-info">
+          <span id="sidebarName">{{ name or 'User' }}</span>
+          <small>Online</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="header-left">
+          <h2>Brain</h2>
+          <span class="header-badge">Memory-aware · Hinglish ON</span>
+        </div>
+        <div class="header-right">
+          <span class="status-dot"></span>
+          <span>KOKI Active</span>
+        </div>
+      </header>
+
+      <!-- Chat -->
+      <div class="chat-area" id="chatArea">
+        <div class="chat-welcome">
+          <p>Session started — <span id="sessionTime"></span></p>
+        </div>
+        <div class="koki-msg">
+          <div class="msg-bubble koki">
+            Namaste! Main KOKI hoon — tera personal AI. Kya baat karein aaj? 🙏
+          </div>
+        </div>
+      </div>
+
+      <!-- Input -->
+      <div class="input-area">
+        <div class="input-box">
+          <input
+            type="text"
+            id="msgInput"
+            placeholder="Poochiye, Krish..."
+            autocomplete="off"
+          />
+          <button id="sendBtn" onclick="sendMessage()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18">
+              <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="quick-cmds">
+          <button onclick="quickSend('play ')">🎵 play</button>
+          <button onclick="quickSend('search ')">🔍 search</button>
+          <button onclick="quickSend('remember ')">📝 remember</button>
+          <button onclick="quickSend('git commit ')">⚙️ git</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="/static/js/app.js"></script>
+  <script>
+    // Session time
+    document.getElementById('sessionTime').textContent =
+      new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+    // Show modal if no name
+    const savedName = "{{ name }}";
+    if (!savedName || savedName === "None") {
+      document.getElementById('nameModal').style.display = 'flex';
+      document.getElementById('app').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
