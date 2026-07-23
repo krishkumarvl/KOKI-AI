@@ -1,4 +1,8 @@
-google-genai
+fastapi
+uvicorn
+jinja2
 python-dotenv
-yt-dlp
+google-genai
 ddgs
+yt-dlp
+requests
